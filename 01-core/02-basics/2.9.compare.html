@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //javascript 에서는
+      // === strict equal만 쓴다.
+
+      // == 서로 자료형이 다르면 형 변환 후 계산, 혹은 비교가 진행됨.
+      alert(0 == false); //true 형 변환이 자동으로 됨.
+      // === 자료형이 다르면 무조건 false
+      // 자료형(type)이 같을 때만 true인지 판단
+      alert(0 === false); //false
+      alert(0 === 0); //true
+      alert(false === false); //ture
+      alert(0 === 1); //false
+
+      alert(0 != false); //false
+      alert(0 !== false); //true
+
+      //자바스크립트에서는 기본값을
+      // 0, "", false/true 이런 값으로 해야함
+      // null, undefinded 이런 걸로 하면 버그 발생 가능성 존재
+
+      let a = "";
+      let b = 0;
+      let c = false;
+      const obj = {};
+      const arr = [];
+      //"2" > "12" → true
+      //b가 ab보다 크냐 라는 의미와 같다.
+
+      //예외처리 코드 -> 초기화
+      // if(typeof a === "undefined") {
+      //   a = "";
+      // }
+    </script>
+  </body>
+</html>

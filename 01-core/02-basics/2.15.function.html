@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // function showMessage(name) {
+      //   let msg = "안녕하세요!";
+      //   alert(`${name}님, ` + `${msg}`);
+      //   alert(name + "님, " + msg);
+      // }
+
+      // showMessage("김철수");
+
+      // function showCount(count) {
+      //   //count에 null/undefinded 일때만 'unknown'
+      //   alert(count ?? "unknown");
+      // }
+
+      // let userName = "홍길동";
+
+      // //매개 변수의 defalt를 선언
+      // //매개변수 = 기본값
+      // function show(name = userName) {
+      //   let msg = "안녕하세요!";
+      //   alert(`${name}님, ${msg}`);
+      // }
+      // //매개변수의 defalt가 있어 매개변수 없이 호출
+      // show();
+      // show("박영희");
+      // function showM(name = userName, text) {
+      //   //text 매개변수에 문자열이 있으면
+      //   //text 반환
+      //   //test 매개변수에 문자열이 없으면
+      //   //'안녕하세요!' 반환
+      //   let msg = text || "안녕하세요!";
+      //   alert(`${name}님, ${msg}`);
+      // }
+      // //매개변수의 defalt가 있어 매개변수 없이 호출
+      // //name, text 둘다 undefinded인데, name은 기본값
+      // showM("김철수", "김영희 뿅뿅");
+      // showM();
+
+      function chackAge(age) {
+        return age > 18 ? true : confirm("보호자의 동의를 받으셨나요?");
+      }
+      function checkAge(age) {
+        return age > 18 || confirm("보호자의 동의를 받으셨나요?");
+      }
+      function checkMin(a, b) {
+        return a < b ? a : b;
+      }
+
+      // alert(checkMin(2, 5));
+      // alert(checkMin(3, -1));
+      // alert(checkMin(1, 1));
+
+      function pow(x, n) {
+        let result = x;
+        if (n > 0 && n % 1 == 0) {
+          for (let i = 1; i < n; i++) {
+            result *= x;
+          }
+          return alert(result);
+        } else {
+          alert("자연수를 입력해주세요");
+        }
+      }
+
+      // function pow(x, n) {
+      //   let result = x;
+
+      //   for (let i = 1; i < n; i++) {
+      //     result *= x;
+      //   }
+
+      //   return result;
+      // }
+
+      // let x = prompt("x?", "");
+      // let n = prompt("n?", "");
+
+      // if (n < 1) {
+      //   alert(`${n}은 양의 정수이어야 합니다.`);
+      // } else {
+      //   alert(pow(x, n));
+      // }
+
+      pow(2, 2.5);
+    </script>
+  </body>
+</html>

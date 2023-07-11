@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const user = {
+        surname: "Smith",
+      };
+      user.name = "John";
+      user["name"] = "Pete";
+      delete user.name;
+      console.log(user);
+      let salaries = {
+        John: 100,
+        Ann: 160,
+        Pete: 130,
+      };
+      let sum = 0;
+      for (let prop in salaries) {
+        sum += salaries[prop];
+      }
+      console.log(sum);
+
+      function multiplyNumeric(obj) {
+        for (let prop in obj) {
+          if (typeof obj[prop] == "number") {
+            obj[prop] *= 2;
+            console.log(obj[prop]);
+          } else {
+            continue;
+          }
+        }
+      }
+      // 함수 호출 전
+      let menu = {
+        width: 200,
+        height: 300,
+        title: "My menu",
+      };
+
+      multiplyNumeric(menu);
+      console.log(menu);
+
+      // 함수 호출 후
+      menu = {
+        width: 400,
+        height: 600,
+        title: "My menu",
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // let ask = (question) =>
+      //   confirm(question)
+      //     ? alert("동의하셨습니다.")
+      //     : alert("취소 버튼을 누르셨습니다.");
+      // ask("동의하시겠습니까?");
+
+      // function ask(question, yes, no) {
+      //   if (confirm(question)) yes();
+      //   else no();
+      // }
+
+      // ask(
+      //   "동의하십니까?",
+      //   () => alert("동의하셨습니다."),
+      //   () => alert("취소 버튼을 누르셨습니다.")
+      // );
+
+      // let sum = (a, b) => a + b;
+      // function sum(a, b) {
+      //   return a + b;
+      // }
+      // let sum = function (a, b) {
+      //   return a + b;
+      // };
+
+      // let even = function (a, b) {
+      //   if (a % 2 == 0) {
+      //     return a;
+      //   } else if (b % 2 == 0) {
+      //     return b;
+      //   } else {
+      //     return "두 수 모두 홀수 입니다.";
+      //   }
+      // };
+      // alert(even(2, 5));
+
+      // let nums = [1, 2, 3, 4];
+      // function add(list) {
+      //   let sum = 0;
+      //   for (let i = 0; i < list.length; i++) {
+      //     sum += list[i];
+      //   }
+      //   return sum;
+      // }
+      // alert(add(nums));
+
+      // let str = new Array();
+      // let input = prompt("거꾸로 출력 받을 단어를 입력하세요", "");
+      // str = Array.from(input);
+      // let arr = str.sort(function (a, b) {
+      //   if (a > b) return -1;
+      //   if (a === b) return 0;
+      //   if (a < b) return 1;
+      // });
+      // for (let i = 0; i < arr.length; i++) {
+      //   document.write(arr[i] + "<br>");
+      // }
+
+      // let num = prompt("팩토리얼 숫자를 입력하세요", 0);
+      // function factorial(num) {
+      //   if (num > 0) {
+      //     return num * factorial(num - 1);
+      //   } else if (num == 0) {
+      //     return 1;
+      //   }
+      // }
+      // alert(factorial(num));
+
+      let inputString = prompt("길이를 확인할 문장을 넣어주세요", "");
+      let list = Array.from(inputString);
+      alert(list.length);
+
+      let list1 = Array.from(prompt("배열 요소를 입력해주세요", ""));
+      for (let i = 0; i < list1.length; i++) {
+        for (let j = 0; j < i; j++) {
+          if (list1[i] === list[j]) {
+            delete list1[j];
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

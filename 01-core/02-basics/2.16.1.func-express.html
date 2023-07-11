@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //선언이 뒤에 있는데, 앞쪽에서 사용을 한다.
+      //브라우저 내부적으로 최상단에 선언됨
+      //호이스팅(hosting): 끌어올린다.
+      //선언만 된거지 초기화 된 것은 아님
+      //let sayHi2;
+
+      sayHi("김철수");
+      sayHi2("김철수"); //에러
+
+      function sayHi(name) {
+        alert(`Hello, ${name}`);
+      }
+
+      let sayHi2 = function (name) {
+        // (*) 마술은 일어나지 않습니다.
+        alert(`Hello, ${name}`);
+      };
+      //알고는 있지만 초기화 되지 않았다고 뜸.
+    </script>
+  </body>
+</html>

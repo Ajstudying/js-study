@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // if(조건식) { ... }
+      //조건식은 true/false로
+      //판정할 수 있는 모든 식이 올 수 있음
+      /*
+    if (0) {} //false
+    if ("") {} //false
+    if (undefined) {} //false
+    if ("a") {} //true
+    */
+
+      //let input = prompt("자바스크립트의 '공식' 이름은 무엇일까요?");
+      /*
+      if (input === "ECMAScript") {
+        alert("정답입니다!");
+      } else {
+        alert("모르셨나요? 정답은 ECMAScript 입니다!");
+      }
+      */
+      // input === "ECMAScript"
+      //   ? alert("정답입니다!")
+      //   : alert("모르셨나요? 정답은 ECMAScript 입니다!");
+
+      /*
+      let num = prompt("숫자를 입력하세요", 0);
+      if (num > 0) {
+        alert(1);
+      } else if (num < 0) {
+        alert(-1);
+      } else {
+        alert(0);
+      }
+      */
+
+      let result = a + b < 4 ? "미만" : "이상";
+
+      let message =
+        login == "직원"
+          ? "안녕하세요."
+          : login == "임원"
+          ? "환영합니다."
+          : login == ""
+          ? "로그인이 필요합니다."
+          : "";
+    </script>
+  </body>
+</html>

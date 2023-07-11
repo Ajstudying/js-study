@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // for(let i = 2; i <= 10; i++) {
+    //   if(i % 2 === 0) {
+    //     alert(i)
+    //   }
+    // }
+
+    // let j = 0;
+    // while (j<3) {
+    //   alert(`number ${j}!`);
+    //   j++;
+    // }
+
+    // while(true) {
+    //   let input = prompt("100을 초과하는 숫자를 입력해주세요", 0);
+    //   if (input > 100) {
+    //     break;
+    //   }else if (input === null) {
+    //     alert("다시 입력해주세요");
+    //   }
+    // }
+
+    // while(true) {
+    //   const result = prompt(">100");
+    //   //확인 버튼 클릭 또는 취소
+    //   if (result === "" || result === null){
+    //     break;
+    //   }
+    //   //숫자이면서 0은 아니고 100보다 큰 수
+    //   if(+result && result > 100) {
+    //     break;
+    //   }
+    // }
+
+    
+    let n = 10;
+    nextPrime:
+    for (let i = 2; i <= n; i++) { // 각 i에 대하여 반복문을 돌림
+      for (let j = 2; j < i; j++) { // 제수(나눗수)를 찾음
+        if (i % j == 0) continue nextPrime; // 소수가 아니므로 다음 i로 넘어감
+      }
+      alert( i ); // 소수
+    }
+    
+    
+
+  </script>
+  </script>
+</body>
+</html>

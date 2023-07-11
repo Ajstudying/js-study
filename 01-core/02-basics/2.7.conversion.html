@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let value = true;
+      alert(typeof value);
+
+      //string 변환(자바스크립트는 string 소문자)
+      //문자열 변환
+      value = "" + value;
+      alert(typeof value);
+
+      //number
+      let str = "123";
+      alert(typeof str);
+      let num = +str;
+      alert(typeof num);
+      /* 
+      숫자 형변환 시
+      null은 0이 되고 undefined는 NaN이 됩니다.
+      undefined -> NaN (undefined는 값이 할당이 안된거라 Nan이고)
+      undefined + 1 = NaN
+      null -> 0        (null은 빈값이라 생각해서 0)
+      null + 1 = 1
+      true / false -> 1 / 0
+      String
+          -> 숫자 변환 불가(NaN)
+          -> 공백은 무시
+          -> 빈 문자열 0 
+          */
+
+      /* "\t \n" - 2 -> 빈문자열(공백무시) - 2
+       */
+
+      //number 형변환 실패, NaN(숫자타입), 타입은 숫자이지만, 숫자가 아닌 것이 NaN이 나옴
+      let str2 = "sdf";
+      alert(typeof str2);
+      let num2 = +str2;
+      alert(num2 + " " + typeof num2);
+
+      //불린형 변환 (거의 자동 판정이기 때문에 강제 변환할 필요가 거의 없다.)
+      //false로 판정 되는 것들 : 0(숫자), ""(빈문자열), null, undefinded, NaN
+      //그 외에는 true로 판정이 됨. ** "0"은 true임. **
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //변수에 함수를 생성해서 할당
+      let sayHi = function () {
+        alert("Hello");
+      };
+
+      console.log(sayHi);
+      alert(sayHi);
+
+      let func = sayHi;
+      func();
+      sayHi();
+
+      function ask(question, yes, no) {
+        const result = confirm(question);
+
+        //확인 클릭
+        if (result) {
+          //매개변수로 받은 yes(함수) 실행
+          console.log(typeof yes);
+          if (typeof yes === "function") {
+            yes(); //함수를 받아서 사용할 거면 이런 형식을 써주고, string을 받을 때는 아래로 넘어간다.
+          } else if (typeof yes === "string") {
+            alert(yes);
+          }
+        }
+      }
+
+      /* 콜백(callback)
+      : 함수의 매개변수로 넘기는 함수
+        나중에 호출하기 위해서
+        */
+
+      function showOk() {
+        console.log("---called showOk---");
+        alert("동의하셨습니다.");
+      }
+
+      ask("개인 정보 활용에 동의하십니까?", showOk);
+      ask("개인 정보 활용에 동의하십니까?", "동의하셨습니다.");
+      //익명함수(anonymous function), 인라인 함수
+      ask("개인 정보 활용에 동의하십니까?", function () {
+        alert("동의하셨습니다.");
+      });
+    </script>
+  </body>
+</html>
