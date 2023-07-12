@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let obj = {
+        name: "John",
+        age: 30,
+        skills: {
+          coding: "Javascript",
+          sports: "Football",
+        },
+      };
+      let copiedObj = JSON.parse(JSON.stringify(obj));
+      console.log(copiedObj);
+
+      let person = {
+        firstName: "John",
+        lastName: "Doe",
+      };
+
+      //(shallow copy) 얕은 복사
+      let clone = Object.assign({}, person);
+      console.log(clone);
+      let clone1 = { ...person };
+      console.log(clone1);
+
+      let students = [
+        { name: "John", age: 21 },
+        { name: "Anna", age: 22 },
+        { name: "Max", age: 23 },
+      ];
+
+      let copiedStudents = JSON.parse(JSON.stringify(students));
+      console.log(copiedStudents);
+
+      function copyObj(obj) {
+        return JSON.parse(JSON.stringify(obj));
+      }
+
+      let animal = {
+        type: "Dog",
+        name: "Milo",
+      };
+
+      //얕은 복사
+      let copiedAnimal = Object.assign({}, animal);
+      console.log(copiedAnimal);
+
+      // let user = {
+      //   name: "John",
+      //   sizes: {
+      //     height: 182,
+      //     width: 50,
+      //   },
+      // };
+
+      let user = {
+        name: "John",
+      };
+
+      let permissions1 = { canView: true };
+      let permissions2 = { canEdit: true };
+
+      Object.assign(user);
+      let copiedUser = Object.assign({}, user, permissions1, permissions2);
+      Object.assign(user, permissions1, permissions2);
+
+      copiedUser[permissions1] = false;
+      console.log(copiedUser);
+      console.log(user);
+    </script>
+  </body>
+</html>

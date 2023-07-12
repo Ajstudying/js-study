@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let user = {};
+
+      //error
+      //user(init 됨 얘 주소는 생성되어 있음. 읽기 가능o).address(undefinded)라고 뜨면서 에러가 뜸.
+
+      user.address = {
+        street: "신촌로",
+      }; //이러면 에러가 안남.
+
+      //이랬을 때 에러남
+      // user.adress = { (오타)
+      //   streat: "신촌로", (오타)
+      // };
+
+      //사용자 정보인데
+      //어떤 사람은 주소정보가 있고, 어떤 사람은 없을 수 있음.
+
+      console.log(user.address.street);
+
+      //user.address -> 첫번째 undefinded를 반환
+      //객체명.속성명?.속성명?...
+      //첫번째 undefine인 속성을 접근
+      console.log(user.address?.street);
+
+      //이전 줄에서 에러가 발생하면 다음 줄은 실행이 안됨.
+      //이래서 나온 것이 옵셔널 체이닝!!!
+    </script>
+  </body>
+</html>

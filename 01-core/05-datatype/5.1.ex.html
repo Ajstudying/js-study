@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let num1 = +prompt("The first number?", "");
+      let num2 = +prompt("The second number?", "");
+      alert(num1 + num2);
+
+      let readNumber = function () {
+        let a = prompt("Enter a number please?", 0);
+        if (typeof a == "number") {
+          alert("Read: " + a);
+        } else if (!isNaN(a)) {
+          alert("Read: " + a);
+        } else {
+          readNumber();
+        }
+      };
+
+      readNumber();
+
+      function readNumber() {
+        let num;
+
+        do {
+          num = prompt("Enter a number please?", 0);
+        } while (!isFinite(num));
+
+        if (num === null || num === "") return null;
+
+        return +num;
+      }
+
+      alert(`Read: ${readNumber()}`);
+    </script>
+  </body>
+</html>

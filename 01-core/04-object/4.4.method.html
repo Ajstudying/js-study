@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let user = {
+        name: "John",
+        age: 30,
+        //속성으로써의 함수
+        // sayHi: function () {
+        //   alert("안녕하세요!");
+        //   console.log(this.name);
+        // },
+        sayHi() {
+          alert("안녕하세요!" + this.name);
+        },
+        //아래와 같은 경우는 안쓰는게 좋음. this가 해당 객체의 name을 참조하지 않고 윈도우로 가버림.
+        // sayHi: () => {
+        //   alert("안녕하세요!" +  this.name);
+        // },
+      };
+
+      // //속성 추가(속성이 함수)
+      // user.sayHi = function() {
+      //   alert("안녕하세요!");
+      // };
+
+      function sayHi() {
+        alert(this.name);
+      }
+
+      //sayHi를 실행하는 구조
+      //window.sayHi();
+      //함수 실행 컨텍스트(문맥)가 window
+      //이 때의 this는 window
+      sayHi();
+
+      //함수 실행 컨텍스트가(문맥)가 user객체
+      //이 때의 this는 user객체
+      user.sayHi();
+
+      let ladder = {
+        step: 0,
+        up() {
+          this.step++;
+          return this; //함수 처리 후 현재 객체를 반환한다.
+        },
+        down() {
+          this.step--;
+          return this;
+        },
+        showStep: function () {
+          // 사다리에서 몇 번째 단에 올라와 있는지 보여줌
+          alert(this.step);
+        },
+      };
+
+      //체이닝
+      laddr.up().up().down();
+
+      let obj = ladder.up();
+      obj = obj.up();
+      obj = obj.down();
+    </script>
+  </body>
+</html>

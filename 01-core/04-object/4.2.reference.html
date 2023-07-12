@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let user = {
+        name: "John",
+        age: 30,
+      };
+
+      let clone = {};
+      for (let prop in user) {
+        //속성을 생성하면서 대입
+        clone[prop] = user[prop];
+      }
+
+      clone.name = "Pete"; //user.name은 John
+      console.log(user.name);
+
+      let permissions1 = { canView: true };
+      //let permissions1 = { name: "Pete", canView: true };
+      //위와 같이 기존에 있던 속성과 같은 이름의 속성이 있으면 덮어씌워짐.
+      let permissions2 = { canEdit: true };
+
+      //기존 객체에 속성을 복사
+      //Object.assign(대상객체, 소스객체, ...)
+      // 대상객체의 같은 속성이 있으면 덮어씌움.
+      Object.assign(user, permissions1, permissions2);
+      console.log(user);
+
+      //새로운 객체를 생성
+      //대상객체가 새로운 객체 이므로 새로운 객체를 생성한다.
+      //대상 객체를 반환함.
+      const permissionedUser = Object.assign(
+        {}, //대상 객체
+        user, //소스 객체
+        permissions1, //소스 객체
+        permissions2 //소스 객체
+      );
+      console.log(permissionedUser);
+
+      console.log(user === permissionedUser);
+
+      //...spread operator
+      //객체의 모든 속성을 열거를 해주는 연산
+      // ex ...user 과 user = { name: "pete", canView: true ..... 등등} 같음
+      //단, 기존 객체가 const이면 에러남.
+      //{}객체 생성
+      //{...user} user객체의 속성을 복사해서 객체 생성
+      user = { ...user, ...permissions1, ...permissions2 };
+      //user = { ...user, ...permissions1, ...permissions2, name: "John" };
+      //위와 같이도 가능.
+      console.log(user);
+
+      //user객체 기반으로 신규객체 생성 첫번째 방법
+      let clone = Object.assign({}, user); //완전한 신규객체 copy
+      console.log(clone);
+
+      //user객체 기반으로 신규객체 생성 두번째 방법
+      let clone2 = { ...user };
+
+      /*아래와 같은 경우에 clone을 만들었을 때 
+      sizes의 경우는 참조가 복사 되기 때문에
+      복사된 clone도 같은 sizes를 가리킴 
+      요새는 자동으로 하위객체를 인식해서 복사를 해주기도 함.*/
+      let user2 = {
+        name: "John",
+        sizes: {
+          height: 182,
+          width: 50,
+        },
+      };
+
+      //객체를 복사, 하위 속성까지 복제
+      //대신에 함수는 복제 안되는 방법
+      //객체에 데이터 값만 있을 때 deepClone하는 방법
+      //JSON.stringify(객체) -> 객체를 문자열로 변환
+      //JSON.parse(문자열) -> 문자열을 객체로 변환
+      //Javascript Object Notation: 자바스크립트 객체 표기법
+      // 속성명은 ""쌍따옴표로 감싸줌 ex) "age": 40
+      //문자열 속성값은 ""쌍따옴표로만 사용
+      let clone3 = JSON.parse(JSON.stringify(user));
+      console.log(JSON.stringify(user)); //문자열
+      console.log(clone2);
+    </script>
+  </body>
+</html>

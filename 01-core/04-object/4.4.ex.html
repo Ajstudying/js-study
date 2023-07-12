@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // let calculator = {
+      //   num1: 0,
+      //   num2: 0,
+      //   read() {
+      //     this.num1 = +prompt("숫자를 입력해주세요", 0);
+      //     this.num2 = +prompt("다음 숫자를 입력해주세요", 0);
+      //   },
+      //   sum() {
+      //     return this.num1 + this.num2;
+      //   },
+      //   mul() {
+      //     return calculator.num1 * calculator.num2;
+      //   },
+      // };
+      // calculator.read();
+      // alert(calculator.sum());
+      // alert(calculator.mul());
+
+      // let ladder = {
+      //   step: 0,
+      //   up() {
+      //     this.step++;
+      //     return this; //함수 처리 후 현재 객체를 반환한다.
+      //   },
+      //   down() {
+      //     this.step--;
+      //     return this;
+      //   },
+      //   showStep: function () {
+      //     // 사다리에서 몇 번째 단에 올라와 있는지 보여줌
+      //     alert(this.step);
+      //   },
+      // };
+      // //체이닝
+      // laddr.up().up().down();
+
+      // let obj = ladder.up();
+      // obj = obj.up();
+      // obj = obj.down();
+
+      // function Calculator() {
+      //   this.read = function () {
+      //     this.num1 = +prompt("숫자를 입력해주세요", 0);
+      //     this.num2 = +prompt("다음 숫자를 입력해주세요", 0);
+      //   };
+      //   this.sum = function () {
+      //     return this.num1 + this.num2;
+      //   };
+      //   this.mul = function() {
+      //     return this.num1 * this.num2;
+      //   };
+      // }
+      // let calculator = new Calculator();
+      // calculator.read();
+
+      // alert("Sum=" + calculator.sum());
+      // alert("Mul=" + calculator.mul());
+
+      function Accumulator(startingValue) {
+        this.value = startingValue;
+        this.read = function () {
+          this.value += +prompt("기존 값에 더할 숫자를 입력해주세요", 0);
+        };
+      }
+
+      let accumulator = new Accumulator(1); // 최초값: 1
+
+      accumulator.read(); // 사용자가 입력한 값을 더해줌
+      accumulator.read(); // 사용자가 입력한 값을 더해줌
+
+      alert(accumulator.value); // 최초값과 사용자가 입력한 모든 값을 더해 출력함
+    </script>
+  </body>
+</html>

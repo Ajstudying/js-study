@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //템플릿 리터럴
+      let c = `${a} +++
+      abcededlfslj
+      12312312313
+      `;
+
+      //백틱은 엔터쳐서 내려가는게 가능하다.
+      const item = `
+      <li class=${style}>
+        ${content}
+      </li>
+      `;
+
+      let emoji = "🎨"; //윈도우+.
+
+      //문자열의 길이
+      const aaa = "aaa";
+      console.log("aaa".length);
+      console.log(aaa.length);
+
+      //특정 인덱스의 글자 접근
+      // 배열 사용 한다.
+      const str = "abc";
+      console.log(str[1]);
+
+      //for ... of
+      //iterable: 반복 가능한 객체(배열, 문자열...)
+      //for(변수 of iterable)
+      //변수에 인덱스 위치의 `값`
+      for (let char of "Hello") {
+        console.log(char);
+      }
+      console.log("----");
+      for (let index of "Hello") {
+        console.log(index);
+      }
+
+      let users = {
+        kdk: {
+          phone: "0101234566",
+        },
+        abc: {},
+      };
+
+      users["kdk"];
+      users["abc"];
+      for (let userId in users) {
+        console.log(users[userId]);
+      }
+
+      let usersArr = [{ phone: "0123456" }, { phone: "12312312" }];
+      usersArr[0];
+    </script>
+  </body>
+</html>
