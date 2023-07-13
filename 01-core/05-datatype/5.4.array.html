@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 객체를 인덱스로 서보자
+      const obj = {
+        2: "bcde",
+        1: "abcd",
+        3: "32233",
+      };
+
+      for (let prop in obj) {
+        console.log(obj[prop]);
+      }
+
+      console.log(obj[1]);
+      console.log(obj[3]);
+
+      let obj1 = {}; //객체
+      let arr = []; //배열
+
+      //리터럴(literal)으로 초기화
+      let fruits = ["사과", "오렌지", "자두"];
+
+      //리터럴
+      let a = "첫째 과일: ";
+
+      //템플릿 리터럴(template literal)
+      let str = `
+      첫번째과일: ${fruits[0]},
+      두번째과일: ${fruits[1]},
+      세번째과일: ${fruits[2]},`;
+
+      //배열 요소 수정
+      fruits[2] = "배";
+
+      //배열에 요소 추가
+      //현재 배열 최대 인덱스보다 큰 인덱스
+      fruits[3] = "레몬";
+
+      //배열 길이
+      console.log(fruits.length); // 4
+      console.log(fruits);
+      //배열을 문자열로 변환
+      //구분자(delimeter)는 ","로 구분해줌
+      console.log(fruits.toString);
+
+      // 요소에 여러 가지 자료형이 섞여 있습니다.
+      let arr1 = [
+        "사과",
+        { name: "이보라" },
+        true,
+        function () {
+          alert("안녕하세요.");
+        },
+      ];
+      // 인덱스가 1인 요소(객체)의 name 프로퍼티를 출력합니다.
+      alert(arr1[1].name); // 이보라
+
+      // 인덱스가 3인 요소(함수)를 실행합니다.
+      arr1[3](); // 안녕하세요.
+
+      console.log(fruits);
+      //arr.pop() 가장 마지막 것을 꺼내옴
+      // 0 1 2 3 = last index
+      // 1 2 3 4 = length
+      //arr[arr.length - 1]: 가장 마지막 것만 조회
+      console.log(fruits.pop());
+      console.log(fruits);
+      //arr.push(요소), 배열 끝에 요소 추가
+      console.log(fruits.push("배"));
+      console.log(fruits);
+      //배열의 가장 앞의 요소 꺼내오기
+      fruits.shift();
+      console.log(fruits);
+      //배열의 가장 앞에 요소 추가
+      fruits.unshift("키위");
+      console.log(fruits);
+      console.log(typeof fruits);
+
+      //배열만의 정렬해주는 최적화 기법이 작동이 안 된다.
+      fruits.name = "과일목록";
+      conole.log(fruits);
+
+      fruits[9999] = 5;
+      console.log(fruits);
+
+      //배열의 요소 탐색
+      //for(요소 변수 of 배열)
+      for (let fruit of fruits) {
+        console.log(fruit);
+      }
+      //for(인덱스변수 in 배열)
+      for (let index in fruits) {
+        console.log(fruits[index]);
+      }
+
+      //배열 초기화
+      arr = [];
+
+      //
+      let matrix = [
+        ["Ko", "0101234567", 39],
+        ["Kim", "01089101112", 30],
+        ["Hong", "01013141516", 20],
+      ];
+
+      let matrix1 = [
+        ["Ko", ["010", "02", "02"], 39],
+        ["Kim", ["010", "02", "031"], 30],
+        ["Hong", ["010", "032", "02"], 20],
+      ];
+
+      //아래처럼 하는 것 보다 위처럼 하는게 좋다. 그래서 다차원 배열을 사용한다.(코드 간결)
+      let arr2 = [
+        {
+          name: "Ko",
+          phone: { mobile: "010", home: "02", office: "02" },
+          age: 39,
+        },
+        {
+          name: "Kim",
+          phone: { mobile: "010", home: "02", office: "031" },
+          age: 30,
+        },
+      ];
+
+      matrix[0][0]; //첫번째 데이터 [0]의 이름[0]
+      matrix[0][1]; //첫번째 데이터 [0]의 전화번호[1]
+      matrix[0][2]; //첫번째 데이터 [0]의 나이[2]
+
+      //첫번째 데이터[0], 전화번호[1], 회사번호[2]
+      matrix[0][1][2];
+    </script>
+  </body>
+</html>

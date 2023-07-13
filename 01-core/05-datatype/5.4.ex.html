@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let styles = ["Jazz", "Blues", "Rap"];
+      styles.push("Rock-n-Roll");
+      styles[findCenterIndex(styles)] = "Classics";
+      console.log(styles);
+      // styles[Math.floor((styles.length - 1) / 2)] = "Classics";
+      // console.log(styles.shift());
+      // styles.unshift("Rap", "Reggae");
+      // console.log(styles);
+
+      function findCenterIndex(arr) {
+        return arr.length % 2 === 1
+          ? Math.round(arr.length / 2) - 1
+          : arr.length / 2 - 1;
+      }
+
+      //********************************//
+      // function findCenterIndex(arr) {
+      //   return Math.trunc(arr.length / 2);
+      // } 짝수일 때 조건 추가해야함~
+      //********************************//
+
+      // let findCenterIndex = (arr) => {
+      //   return arr.length % 2 === 1
+      //     ? Math.round(arr.length / 2) - 1
+      //     : arr.length / 2 - 1;
+      // };
+
+      // function sumInput() {
+      //   let sum = 0;
+      //   while (true) {
+      //     let input = +prompt("숫자를 입력하세요", 0);
+      //     if (input === NaN) {
+      //       break;
+      //     } else if (input == 0) {
+      //       continue;
+      //     } else {
+      //       sum += input;
+      //     }
+      //   }
+      //   return alert(sum);
+      // }
+
+      //위의 조건은, null일 때 무조건 0으로 변환돼서, 취소를 눌러도 계속 진행됨..ㅠㅋ
+
+      // let sumInput = () => {
+      //   let sum = [];
+      //   while (true) {
+      //     let input = +prompt("숫자를 입력하세요", 0);
+      //     if (value === "" || value === null || !isFinite(value)) {
+      //       break;
+      //     }
+      //     numbers.push(+value);
+      //   }
+      //   let numbers = 0;
+      //   for (let num of sum) {
+      //     numbers += num;
+      //   }
+      //   return alert(numbers);
+      // };
+
+      // sumInput();
+
+      function getMaxSubSum(arr) {
+        let sum = 0;
+        for (let i of arr) {
+          if ((sum += i) > 0) {
+            sum += i;
+            console.log(sum);
+          } else {
+            break;
+          }
+        } //console.log(sum);
+      }
+
+      function getMaxSubSum(arr) {
+        let maxSum = 0; // 어떤 요소도 선택하지 않으면 0을 반환합니다.
+
+        for (let i = 0; i < arr.length; i++) {
+          let sumFixedStart = 0;
+          for (let j = i; j < arr.length; j++) {
+            sumFixedStart += arr[j];
+            maxSum = Math.max(maxSum, sumFixedStart);
+          }
+        }
+        return console.log(maxSum);
+      }
+      // let getMaxSubSum = (arr) => {
+      //   let maxSum = 0;
+      //   let partialSum = 0;
+
+      //   for (let item of arr) {
+      //     // 배열의 각 요소를
+      //     partialSum += item; // partialSum에 더합니다.
+      //     maxSum = Math.max(maxSum, partialSum); // 최대값을 기억해 놓습니다.
+      //     if (partialSum < 0) partialSum = 0; // 음수가 되면 0을 대입합니다.
+      //   }
+
+      //   return maxSum;
+      // }
+
+      function getMaxSubSum(arr) {
+        let startPos = 0;
+        let maxSumValue = 0;
+        for (let prop in arr) {
+          let sumValue = 0;
+          console.log(`//////////// 가장 큰 for문 (${startPos})/////// `);
+          for (let index = startPos; index < arr.length; index++) {
+            console.log(`(${index})----------- i:[${index}] => ${arr[index]}`);
+            sumValue = arr[index];
+            for (let j = startPos; j < index; j++) {
+              console.log(`    >>> j:[${j}] : ${arr[j]}`);
+              sumValue += arr[j];
+            }
+            console.log(`** sumValue > ${sumValue}`);
+            console.log("");
+            if (sumValue > maxSumValue) maxSumValue = sumValue;
+          }
+          startPos++;
+        }
+        return maxSumValue;
+      }
+
+      getMaxSubSum([-1, 2, 3, -9]);
+      getMaxSubSum([2, -1, 2, 3, -9]);
+      getMaxSubSum([-1, 2, 3, -9, 11]);
+      getMaxSubSum([-2, -1, 1, 2]);
+      getMaxSubSum([100, -9, 2, -3, 5]);
+      getMaxSubSum([1, 2, 3]);
+      getMaxSubSum([-1, -2, -3]);
+    </script>
+  </body>
+</html>

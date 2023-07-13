@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let str = "Widget with id";
+
+      console.log(str.indexOf("Widget")); // 0 문자열 인덱스 (없으면 -1이 나옴. -1보다 크면 존재한다는 이야기!)
+      console.log(str.indexOf("widget")); //-1 (대소문자 구별중, 위는 대문자 아래는 소문자)
+      //대소문자 구별없이 찾겠다 하면 str.Uppercase() 나 lowercase 등으로 대소문자로 변환해서 찾는다.
+      console.log(str.indexOf("id")); //1
+      //특정 위치부터 찾기를 함
+      console.log(str.indexOf("Id", 2)); // 12
+
+      if (str.indexOf("id") > -1) {
+        console.log("해당 문자열 존재");
+      }
+      //위와 같이 사용 가능, 첫번째 요소는 0이 나와서 false가 나오기 때문에 위와 같은 조건식이 낫다.
+
+      //있는지 없는지만 찾고 싶다.
+      if (str.includes("id")) {
+      }
+
+      let str1 = "stringify"; //컴퓨터 용어로는 문자열로 바꾼다...? 라는 이름.
+      //slice(start, end) end까지(end는 미포함)
+      console.log(str.slice(0, 5)); //strin (0~4)
+      console.log(str.slice(2)); //ringify (2~끝)
+      console.log(str.slice(-4, -1)); //gif (-1이 끝부분 이기 때문에 미포함 -4~-2까지)
+
+      console.log("Österreich".localeCompare("Zealand"));
+
+      function ucFirst(str) {
+        if (!str) {
+          return str;
+        } else {
+          str = str.slice(0, 1).toUpperCase() + str.slice(1);
+          return str;
+        }
+      }
+      // let ucFirst = (str) => {
+      //   str = str.slice(0, 1).toUpperCase() + str.slice(1);
+      //   return str;
+      // };
+
+      console.log(ucFirst("john"));
+
+      let checkSpam = (str) => {
+        if (str.toLowerCase().includes("viagra")) {
+          return true;
+        } else if (str.toLowerCase().includes("xxx")) {
+          return true;
+        } else {
+          return false;
+        }
+      };
+      console.log(checkSpam("buy ViAgRA now"));
+      console.log(checkSpam("free xxxxx"));
+      console.log(checkSpam("innocent rabbit"));
+
+      // let truncate = (str, maxlength) => {
+      //   if (str.length < maxlength) {
+      //     return str;
+      //   } else {
+      //     str = str.slice(0, maxlength - 1) + "...";
+      //     return str;
+      //   }
+      // };
+
+      let truncate = (str, maxlength) => {
+        return str.length > maxlength
+          ? (str = str.slice(0, maxlength - 1) + "...")
+          : str;
+      };
+
+      console.log(truncate("What I'd like to tell on this topic is:", 20));
+      console.log(truncate("Hi everyone!", 20));
+      console.log(truncate("", 20));
+
+      let extractCurrencyValue = (str) => {
+        str = +str.slice(str.indexOf("$") + 1);
+        return str;
+      };
+
+      let currencyValue = (str) => {
+        let string = "";
+        for (let i = 0; i < str.length; i++) {
+          if (isFinite(str[i])) {
+            string += str[i];
+            console.log(string);
+          }
+        }
+        return +string;
+      };
+      alert(currencyValue("$asdsd123fsd120sdfsdf"));
+      alert(extractCurrencyValue("1g224$120") === 120);
+    </script>
+  </body>
+</html>
