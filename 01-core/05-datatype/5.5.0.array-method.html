@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = ["I", "study", "Javascript"];
+      // arr.splice(삭제할 인덱스, 삭제할 요소 개수)
+      arr.splice(1, 1);
+      console.log(arr); //study 삭제
+      console.log(arr.length); //2
+
+      //삭제할 요소 개수없이 인덱스만 넣으면
+      //해당 인덱스 포함하여 뒤에 있는 모든 요소 삭제
+      arr.splice(1);
+
+      //동시에 지우고 한번에 두개씩 넣는 것도 가능하다.
+      arr.splice(1, 2, "learn", "Java");
+
+      const addArr = ["Learn", "Java"];
+      //삭제한 요소가 반환이 된다.
+      //특정 위치에 여러 개를 삭제 시키고 꺼내오는 용도로 사용할 수 있다.
+      const arr2 = arr.splice(1, 2, ...addArr);
+      console.log(arr);
+
+      //간단한 카피법
+      const arr3 = [...arr];
+
+      //string.slice와 동일
+      //원래 배열은 그대로고, 자른 것들은 반환 배열로 생성
+      const arr4 = arr.slice(0, 2);
+      console.log(arr);
+      console.log(arr4);
+
+      //const newArr = source.concat([...])
+      let nums = [1, 2];
+      //splice 사용
+      //배열이 결합은 됐으나, nums가 참조하는 배열은 동일하다. 기존값이 바뀜
+      nums.splice(nums.length, 0, ...[3, 4]);
+
+      //참조값이 바뀐다. 새로운 값이 들어간 배열 참조로 바뀐다. 새로운 값이 생성되어 참조값이 바뀐다.
+      //배열이 결합되면서 새로운 참조배열이 생성
+      //nums가 참조하는 배열은 달라졌다.
+      nums = nums.concat([3, 4]);
+
+      //위와 동일
+      nums = [...nums, ...[3, 4]];
+
+      const newNums = nums.concat([3, 4]);
+      console.log(newNums);
+
+      //for each
+      //arr.forEach: 요소 개수만큼 반복
+      //배열 인덱스가 필요하다.(for .. in)
+      //배열 요소만 필요하다.(for .. of)
+      /*
+      for(let index in arr) {
+        console.log(arr[index])
+      }
+      for(let elm of arr) {
+        console.log(elm)
+      }
+      */
+      ["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
+        console.log(`${item} is at index ${index} in ${array}`);
+      });
+
+      ["Bilbo", "Gandalf", "Nazgul"].forEach((item, index) =>
+        console.log(item, index)
+      );
+
+      ["Bilbo", "Gandalf", "Nazgul"].forEach((item) => console.log(item));
+
+      const arr5 = [{ val: 1 }, { val: 2 }, { val: 3 }];
+
+      //obj -> arr5[0]: 참조상태일 때는 indexOf 됨
+      //obj = {...arr5[0]}: 새로운 객체 indexOf X
+      //const obj = arr5[0];
+      const obj = { ...arr5[0] };
+      console.log(arr5.indexOf(obj));
+    </script>
+  </body>
+</html>

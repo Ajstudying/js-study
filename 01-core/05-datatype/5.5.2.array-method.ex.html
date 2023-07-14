@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const fruits = ["banana", "apple", "orange", "pineapple", "kiwi"];
+
+      console.log(fruits.find((fruits) => fruits === "apple"));
+
+      const numbers = [1, 4, 5, 7, 2, 9, 3];
+      let number = numbers.filter((numbers) => numbers >= 5);
+      console.log(number);
+
+      const nums = [1, 2, 3, 4, 5];
+      // let num = [];
+      // for (let i of nums) {
+      //   num.push(i * 10);
+      // }
+      let num = nums.map((nums) => nums * 10);
+      console.log(num);
+
+      const persons = [
+        {
+          name: "Kim",
+          skills: ["JavaScript", "HTML", "CSS"],
+        },
+        {
+          name: "Lee",
+          skills: ["Java", "Python", "SQL"],
+        },
+        {
+          name: "Park",
+          skills: ["Java", "JavaScript", "CSS"],
+        },
+      ];
+
+      // let java = persons.filter((persons) => {
+      //   if (persons.skills.includes("Java")) {
+      //     return persons.name;
+      //   }
+      // });
+      const javaPersons = persons.filter((person) =>
+        person.skills.includes("Java")
+      );
+      // console.log(java);
+      console.log(javaPersons);
+
+      const people = [
+        { name: "John", age: 28 },
+        { name: "Jane", age: 24 },
+        { name: "Mike", age: 30 },
+      ];
+
+      let peopleName = people.map((people) => people.name);
+      console.log(peopleName);
+
+      const words = ["javascript", "python", "java", "c", "ruby", "rust"];
+
+      let words5 = words.filter((words) => words.length >= 5);
+
+      console.log(words5);
+
+      let age25 = people.filter((people) => {
+        if (people.age >= 25) {
+          return people.name;
+        }
+      });
+      console.log(age25);
+
+      const chars = ["a", "b", "c", "a", "d", "e", "f", "a"];
+
+      let charsNotA = chars.filter((item) => item !== "a");
+      console.log(charsNotA);
+
+      const numsArr = [1, 2, 3, 4, 5];
+      let arr = numsArr.map((item) => item + 5);
+      console.log(arr);
+
+      const names = ["Jane", "John", "Jim", "Jill", "Jack"];
+
+      let index = names.findIndex((names) => names === "John");
+      console.log(index);
+
+      let myShortString = (string) => {
+        let stringArr = [...string];
+        let arrIndex = []; //"-"가 있는 인덱스 번호 배열
+        for (let i = 0; i < stringArr.length; i++) {
+          if (stringArr[i] === "-") {
+            arrIndex.push(i);
+          }
+        }
+        for (let j = 0; j < string.length; j++) {
+          if (arrIndex.includes(j)) {
+            string =
+              string.slice(0, j) +
+              string[j] +
+              string[j + 1].toUpperCase() +
+              string.slice(j + 2);
+          }
+        }
+        string = string.split("-");
+        string = string.join("");
+
+        return string;
+      };
+      function camelize(str) {
+        return str
+          .split("-") // splits 'my-long-word' into array ['my', 'long', 'word']
+          .map(
+            // word 각 단어, "-"를 기준으로 나눠졌음. 각 배열 요소의 첫글자가 "-"이거 다음임.
+            (word, index) =>
+              index == 0 ? word : word[0].toUpperCase() + word.slice(1)
+          )
+          .join("");
+      }
+
+      console.log(myShortString("background-color")); //backgroundColor
+      console.log(myShortString("list-style-image")); //listStyleImage
+      console.log(camelize("-webkit-transition")); //WebkitTransition
+
+      function filterRange(arr, a, b) {
+        return arr.filter((item) => item >= a && item <= b);
+      }
+
+      let arr1 = [5, 3, 8, 1];
+
+      // let filtered = filterRange(arr1, 1, 4);
+      let filtered = (arr, a, b) => {
+        return arr.filter((item) => item >= a && item <= b);
+      };
+      // alert(filtered); // 3,1
+      // alert(filtered(arr1, 1, 4));
+      // alert(arr1); // 5,3,8,1
+
+      //좋지 않은 방식!!! delete를 사용하면
+      //해당 요소 자리에 undefined가 들어가게 되고 인덱스의 길이가 줄어들진 않는다~!
+      // let filterRangeInPlace = (arr, a, b) => {
+      //   let arr1 = arr.filter((item) => item >= a && item <= b);
+      //   let num = [];
+      //   for (let i = 0; i < arr.length; i++) {
+      //     if (!arr1.includes(arr[i])) {
+      //       delete arr[i];
+      //     }
+      //   }
+      //   return arr;
+      // };
+
+      function filterRangeInPlace(arr, a, b) {
+        for (let i = 0; i < arr.length; i++) {
+          let val = arr[i];
+          if (val < a || val > b) {
+            arr.splice(i, 1);
+            i--;
+          }
+        }
+      }
+      filterRangeInPlace(arr1, 1, 4);
+      console.log(arr1); // [3, 1]
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let boy = {
+        name: "Mike",
+        showName: function () {
+          console.log(this.name);
+        },
+      };
+
+      let man = boy;
+      boy = null;
+
+      console.log(man);
+      console.log(boy);
+      man.showName();
+
+      let user = {
+        gender: "male",
+        name: "Mike",
+        age: 30,
+      };
+
+      let cloneUser = Object.assign({}, user, { name: "Tom" });
+      console.log(cloneUser);
+    </script>
+  </body>
+</html>

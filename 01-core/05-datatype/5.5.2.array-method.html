@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let users = [
+        { id: 1, name: "John" },
+        { id: 2, name: "Pete" },
+        { id: 3, name: "Mary" },
+      ];
+
+      let name = "Pete";
+      //배열.find(요소마다 실행할 함수)
+      // -> 실행할 함수는 boolean값을 반환해야 함.
+      //배열.find(요소변수 => boolean을 반환하는 식)
+      //배열.find(요소변수 => {... return true/false})
+      let user = users.find((item) => item.name === name);
+      //위에 식은 내부적으로 반복문이 돈다.
+
+      // let user1 = users.find((item) => {
+      //   console.log(item);
+      //true인 케이스가 나오면 반복을 멈추고
+      //해당 요소를 반환함. 객체 참조가 유지됨.
+      // return item.name === name;
+      // return false; 끝까지 모두 돈다.
+      // });
+
+      //find에서 반환한 객체는 undefined일 수 있다.
+      //옵셔널 체이닝 사용해줘야 한다.
+      //optional을 사용해야 한다.
+      //찾은 객체가 있다. -> name 속성을 출력
+      //찾은 객체가 없다. -> undefined
+      // console.log("finded user: ", user1);
+      // console.log("finded user: ", user1.name); 에러
+      // console.log("finded user: ", user1?.name); // 이렇게 사용해야 함.
+
+      // filter
+      //arr.filter(요소마다 실행할 함수)
+      //함수는 true/false 반환해야 함.
+      //반환이 true인 모든 요소를 배열로 만들어서 반환
+      //못 찾으면 빈배열[]로 반환(item.id > 3 이렇게 됐을때)
+      const someUsers = users.filter((item) => item.id < 3);
+      //조건을 만족 못했을 경우 빈 배열 반환
+
+      console.log(someUsers);
+
+      //********* 매우 중요************//
+      //map
+      //arr.map(요소마다 실행할 함수)
+      //함수는 뽑아내고 싶은 값/객체를 반환해야 함.
+      const userNames = users.map((item) => item.name);
+      console.log(users);
+      console.log(userNames);
+    </script>
+  </body>
+</html>

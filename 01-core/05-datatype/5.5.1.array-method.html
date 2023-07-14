@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let color = ["Red", "Blue", "Green", "Yellow", "Black"];
+
+      function removeColors(color) {
+        let reColor = [];
+        for (let i = 0; i < color.length; i++) {
+          if (color[i] !== "Green" && color[i] !== "Yellow") {
+            reColor.push(color[i]);
+          }
+        }
+        return reColor;
+      }
+      // function removeColors(colors) {
+      //   const index = colors.indexOf("Green");
+      //   if (index > -1) {
+      //     colors.splice(index, 2);
+      //   }
+      //   return colors;
+      // }
+
+      console.log(removeColors(color));
+
+      let numbers = [0, 1, 2, 3, 4, 5];
+
+      function firstThree(numbers) {
+        return numbers.slice(0, 3);
+      }
+      console.log(firstThree(numbers));
+
+      let fruits1 = ["apple", "banana", "cherry"];
+      let fruits2 = ["date", "elderberry", "fig"];
+
+      function mergeFruits(fruits1, fruits2) {
+        return [...fruits1, ...fruits2];
+      }
+      // function mergeFruits(fruits1, fruits2) {
+      //   return fruits1.concat(fruits2);
+      // }
+
+      console.log(mergeFruits(fruits1, fruits2));
+
+      let nums = [1, 2, 3, 4, 5];
+      // function squareNumbers(nums) {
+      //   let number = [];
+      //   for (let i of nums) {
+      //     number.push(i * i);
+      //   }
+      //   return number;
+      // }
+      function squareNumbers(nums) {
+        let newArray = [];
+        nums.forEach((num) => {
+          newArray.push(num * num);
+        });
+        return newArray;
+      }
+      console.log(squareNumbers(nums));
+      console.log(nums);
+
+      // function swapFirstAndLast(arr) {
+      //   if (
+      //     typeof arr[0] === "string" &&
+      //     typeof arr[arr.length - 1] === "string"
+      //   ) {
+      //     let change = "";
+      //     change = arr[0];
+      //     arr[0] = arr[arr.length - 1];
+      //     arr[arr.length - 1] = change;
+      //     return arr;
+      //   } else if (
+      //     typeof arr[0] === "number" &&
+      //     typeof arr[arr.length - 1] === "number"
+      //   ) {
+      //     let change = 0;
+      //     change = arr[0];
+      //     arr[0] = arr[arr.length - 1];
+      //     arr[arr.length - 1] = change;
+      //     return arr;
+      //   }
+      // }
+
+      function swapFirstAndLast(arr) {
+        let change = "";
+        change = arr[0];
+        arr[0] = arr[arr.length - 1];
+        arr[arr.length - 1] = change;
+        return arr;
+      }
+
+      function swapFirstAndLast(arr) {
+        [arr[0], arr[arr.length - 1]] = [arr[arr.length - 1], arr[0]];
+        return arr;
+      }
+      console.log(swapFirstAndLast(nums));
+      console.log(swapFirstAndLast(fruits1));
+    </script>
+  </body>
+</html>
