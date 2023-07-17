@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let user = {
+        name: "John",
+        years: 30,
+      };
+
+      let { name, years: age, isAdmin = false } = user;
+
+      console.log(name);
+      console.log(age);
+      console.log(isAdmin);
+
+      let salaries = {
+        John: 100,
+        Pete: 300,
+        Mary: 250,
+      };
+
+      // let topSalary = (salaries) => {
+      //   let salay = Object.entries(salaries);
+      //   let max = salay[0][1];
+      //   console.log(max);
+      //   let maxName = [];
+      //   for (let i = 0; i < salay.length; i++) {
+      //     if (salay[i][1] > max) {
+      //       max = salay[i][1];
+      //       console.log(max);
+      //       maxName = salay[i];
+      //       console.log(i);
+      //     }
+      //   }
+      //   return maxName[0];
+      // };
+
+      function topSalary(salaries) {
+        let max = 0;
+        let maxName = null;
+
+        for (const [name, salary] of Object.entries(salaries)) {
+          if (max < salary) {
+            max = salary;
+            maxName = name;
+          }
+        }
+
+        return maxName;
+      }
+
+      console.log(topSalary(salaries));
+    </script>
+  </body>
+</html>

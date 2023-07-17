@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const user = {
+        firstName: "Bora",
+        lastName: "Lee",
+      };
+
+      // ["Bora", "Lee"]
+      //first 변수에는 배열 첫번째 요소 대입
+      //last 변수에는 배열 두번째 요소 대입
+      const [first, last] = Object.values(user);
+
+      console.log(first, last); //Bora Lee
+
+      let [firstName, surname] = "Bora Lee".split(" ");
+      //띄어쓰기를 기준으로 나눠서 배열로 만든 후 각각에 대입
+
+      let options = {
+        title: "Menu",
+        width: 100,
+        height: 200,
+      };
+
+      //options.width -> width에 할당되고
+      //width 변수의 이름을 w로 변경
+      let { width: w, height: h } = options;
+      // let {width, height} = options;
+
+      console.log(w * h); //20000
+      // console.log(width * height);
+    </script>
+  </body>
+</html>

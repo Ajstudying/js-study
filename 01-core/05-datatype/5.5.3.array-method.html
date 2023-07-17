@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = [15, 2, 1];
+      //sort의 넘기는 함수가
+      //첫번째 매개변수가
+      //작을 때 음수 반환
+      //클 때 양수 반환
+      //정순 정렬(0, 1.....)
+
+      //a가 작고, b가 큼, 이럴 때 -
+      //이러면 a가 앞에 옴
+      //a가 크고, b가 작음. 이럴 때 -
+      //이러면 a가 앞에 옴(역순, 큰게 앞에 옴)
+      arr.sort((a, b) => a - b); //정순
+      arr.sort((a, b) => b - a); // 역순
+      console.log(arr);
+
+      let strArr = ["John", "Pete", "Mary"];
+      strArr.sort((a, b) => a.localeCompare(b));
+      console.log(strArr);
+
+      let users = [
+        { id: 1, name: "John" },
+        { id: 2, name: "Pete" },
+        { id: 3, name: "Mary" },
+      ];
+
+      // let mappedNames = [];
+      // for(let user of users){
+      //   mappedNames.push(user.name);
+      // }
+
+      let cart = [
+        { id: 1, pid: 1, quantity: 3, amount: 10000, name: "과자" },
+        { id: 1, pid: 1, quantity: 3, amount: 10000, name: "과자" },
+        { id: 1, pid: 1, quantity: 3, amount: 10000, name: "과자" },
+      ];
+
+      cart.reduce((acc, item) => item.quantity * item.amount, 0);
+
+      let sum = 0;
+      for (let item of cart) {
+        sum += item.quantity * item.amount;
+      }
+      //이름 기준 정렬
+      // 이름이 사전식으로 앞쪽에 있는게
+      // 앞 쪽에 오고 싶어(정순 정렬)
+
+      //a가 사전식에 앞이고 앞쪽
+      users.sort((a, b) => a.name.localeCompare(b.name));
+      //a.name이 b.name보다 앞 쪽이면 음수
+      console.log(users);
+
+      let names = "Bilbo, Gandalf, Nazgul";
+      //구분자로 나눠서 배열을 만듬.
+      const namesArr = names.split(",");
+      console.log(namesArr);
+
+      //배열요소 사이에 구분자를 넣어 문자열로
+      const joinedstr = namesArr.join("; ");
+      console.log(joinedstr);
+
+      const userNames = users.map((u) => u.name).join(", ");
+      document
+        .querySelector("body")
+        .insertAdjacentHTML("afterbegin", `<div> ${userNames}</div>`);
+
+      let arrNumbers = [1, 2, 3, 4, 5];
+      //(accumulator, item, index, array) =>
+      //누산기(sum += item): 누적해서 더해서 저장
+
+      //reduce(계산할 함수, 초기값);
+      const result = arrNumbers.reduce(
+        //1회 반복: sum <-0 , num <- 1 => sum:1
+        //2회 반복: sum <- 1, num <- 2 => sum: 3
+        //....
+        (sum, num) => sum + num,
+        0
+      );
+      //(acc, num) => acc + num, 0);
+
+      console.log(result);
+
+      //arr.some(요소마다 실행할 함수)
+      //함수의 반환이 true이면 조건에 맞는 요소가 있음
+      users.some(() => "");
+
+      //true이면 찾은 것
+      const res1 = users.some((user) => user.name === "John");
+      const res2 = users.some((user) => user.id > 2);
+    </script>
+  </body>
+</html>

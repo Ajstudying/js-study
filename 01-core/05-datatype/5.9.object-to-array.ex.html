@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let student = {
+        name: "John",
+        age: 20,
+        major: "Computer Science",
+      };
+
+      let studentKeys = Object.keys(student);
+      console.log(studentKeys);
+      let studentValues = Object.values(student);
+      console.log(studentValues);
+
+      let students = Object.entries(student);
+
+      let salaries = {
+        John: 100,
+        Pete: 300,
+        Mary: 250,
+      };
+
+      let sumSalaries = (arr) => {
+        // let arrNew = Object.values(arr);
+        // return arrNew.reduce((sum, salay) => sum + salay, 0);
+        return Object.values(arr).reduce((sum, arr) => sum + arr, 0);
+      };
+      console.log(sumSalaries(salaries));
+
+      let user = {
+        name: "John",
+        age: 30,
+      };
+
+      let count = (user) => {
+        return Object.keys(user).length;
+      };
+      console.log(count(user)); // 2
+    </script>
+  </body>
+</html>

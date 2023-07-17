@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let people = [
+        { name: "John", age: 23 },
+        { name: "Adam", age: 30 },
+        { name: "Zoe", age: 28 },
+        { name: "Emma", age: 20 },
+      ];
+
+      people.sort((a, b) => a.name.localeCompare(b.name));
+      console.log(people);
+
+      let res1 = people.some((people) => people.name === "John");
+      console.log(res1);
+
+      let peopleAge = people.map((people) => people.age);
+      //reduce 초기값 잊지 말고 꼭 넣기!!
+      let sum = people.reduce((sum, people) => sum + people.age, 0);
+      console.log(sum);
+
+      let peopleAge25 = people.filter((people) => people.age >= 25);
+      console.log(peopleAge25);
+
+      let peopleName = people.map((people) => people.name).join(", ");
+      console.log(peopleName);
+
+      peopleAge.sort((a, b) => b - a);
+      console.log(peopleAge[0]);
+      let oldest = people.reduce((older, people) =>
+        older.age > people.age ? older : people
+      ).name;
+      console.log(oldest);
+
+      let sentence = "Hello world";
+      let sentenceUpper = sentence
+        .split(" ")
+        .map((sentence) => sentence[0].toUpperCase() + sentence.slice(1))
+        .join(" ");
+      console.log(sentenceUpper);
+
+      let senUpper = sentence
+        .split(" ")
+        .map((word) => word.toUpperCase())
+        .join(" ");
+      console.log(senUpper);
+
+      let newPeople = people.map((people) => people.name + ": " + people.age);
+      let peopleNew = people.map((person) => `${person.name}: ${person.age}`);
+      console.log(newPeople);
+
+      // let average =
+      //   people.map((people) => people.age).reduce((sum, age) => sum + age, 0) /
+      //   people.length;
+      // console.log(average);
+
+      let average =
+        people.reduce((sum, people) => sum + people.age, 0) / people.length;
+      console.log(average);
+
+      let includeA = people
+        .map((people) => people.name.toLowerCase())
+        .some((people) => people.includes("a"));
+      console.log(includeA);
+
+      let aInclude = people.some((people) =>
+        people.name.toLowerCase().includes("a")
+      );
+      console.log(aInclude);
+
+      // let camelize = (string) => {
+      //   string
+      //     .split("-")
+      //     .map((string, index) =>
+      //       index == 0 ? string : string[0].toUpperCase() + string.slice(1)
+      //     )
+      //     .join("");
+      // };
+      function camelize(string) {
+        return string
+          .split("-")
+          .map((string, index) =>
+            index == 0 ? string : string[0].toUpperCase() + string.slice(1)
+          )
+          .join("");
+      }
+      console.log(camelize("-webkit-transition"));
+
+      let arr = [5, 3, 8, 1];
+
+      let filterRange = (arr, a, b) => {
+        return arr.filter((arr) => arr >= a && arr <= b);
+      };
+      let filtered = filterRange(arr, 1, 4);
+      console.log(filtered);
+      console.log(arr);
+
+      let filterRangeInPlace = (arr, a, b) => {
+        for (let i = 0; i < arr.length; i++) {
+          let val = arr[i];
+          if (val < a || b < val) {
+            //filter의 반대 조건
+            arr.splice(i, 1); //해당 요소 1개만 지우기
+            i--; //요소가 지워진 후 length 길이가 줄어드므로 i++을 삭제하기 위한 i--
+          }
+        }
+        return arr;
+      };
+
+      console.log(filterRangeInPlace(arr, 1, 4));
+      console.log(arr);
+
+      let arrNumber = [5, 2, 1, -10, 8];
+      arrNumber.sort((a, b) => b - a);
+      console.log(arrNumber);
+
+      let arrString = ["HTML", "JavaScript", "CSS"];
+
+      // let copySorted = (arr) => {
+      //   return [...arr].sort();
+      // };
+      function copySorted(arr) {
+        return arr.slice().sort();
+        //arr.slice()는 인수를 하나도 넘기지 않고 호출하여 arr의 복사본을 만들 수 있습니다.
+      }
+
+      let sorted = copySorted(arrString);
+      console.log(sorted);
+      console.log(arrString);
+
+      // let john = { name: "John", age: 25 };
+      // let pete = { name: "Pete", age: 30 };
+      // let mary = { name: "Mary", age: 28 };
+      // let users = [john, pete, mary];
+
+      // let names = users.map((users) => users.name);
+      // console.log(names);
+
+      // let john = { name: "John", surname: "Smith", id: 1 };
+      // let pete = { name: "Pete", surname: "Hunt", id: 2 };
+      // let mary = { name: "Mary", surname: "Key", id: 3 };
+
+      //중괄호 {를 만나면 자바스크립트는 이를 객체의 시작이라 인식하지 않고
+      //함수 본문이 시작되는 것이라 인식합니다.
+      //소괄호를 사용하면 이를 피할 수 있습니다.
+      // let users = [john, pete, mary];
+      // let usersMapped = users.map((users) => ({
+      //   fullName: `${users.name} ${users.surname}`,
+      //   id: users.id,
+      // }));
+      // console.log(usersMapped);
+
+      // let john = { name: "John", age: 25 };
+      // let pete = { name: "Pete", age: 30 };
+      // let mary = { name: "Mary", age: 28 };
+
+      // let arr1 = [pete, john, mary];
+
+      // let sortByAge = (users) => {
+      //   users.sort((a, b) => a.age - b.age);
+      //   return users;
+      // };
+
+      // console.log(sortByAge(arr1));
+      // sortByAge(arr1);
+      // alert(arr1[0].name); // John
+      // alert(arr1[1].name); // Mary
+      // alert(arr1[2].name);
+
+      let shuffle = (array) => {};
+
+      let john = { name: "John", age: 25 };
+      let pete = { name: "Pete", age: 30 };
+      let mary = { name: "Mary", age: 29 };
+
+      let arr2 = [john, pete, mary];
+
+      //sum하고 객체가 들어와야 객체.age가 실행가능해짐!!!!!!!
+      let getAverageAge = (arr) => {
+        return arr.reduce((sum, arr) => sum + arr.age, 0) / arr.length;
+      };
+      console.log(getAverageAge(arr2));
+
+      let strings = [
+        "Hare",
+        "Krishna",
+        "Hare",
+        "Krishna",
+        "Krishna",
+        "Krishna",
+        "Hare",
+        "Hare",
+        ":-O",
+      ];
+
+      // let unique = (arr) => {
+      //   let unique = [];
+      //   for (let i = 0; i < arr.length; i++) {
+      //     if (!unique.includes(arr[i])) {
+      //       unique.push(arr[i]);
+      //     }
+      //   }
+      //   return unique;
+      // };
+
+      let unique = (arr) => {
+        let set = new Set(arr);
+        return Array.from(set);
+      };
+      console.log(unique(strings));
+
+      let users = [
+        { id: "john", name: "John Smith", age: 20 },
+        { id: "ann", name: "Ann Smith", age: 24 },
+        { id: "pete", name: "Pete Peterson", age: 31 },
+      ];
+
+      let usersById = groupById(users);
+
+      function groupById(users) {
+        return users.reduce((id, users) => {
+          id[users.id] = users;
+          return id;
+        }, {});
+      }
+
+      console.log(usersById);
+    </script>
+  </body>
+</html>
