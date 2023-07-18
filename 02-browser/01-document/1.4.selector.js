@@ -43,8 +43,15 @@ const elem = document.getElementById("div-elem");
       const divElem = document.querySelector("#div-elem");
 
       const span2 = divElem.querySelector("span");
+      // const span2 = document.querySelector("#div-elem").querySelector("span");
       console.log(span2);
 
       const items = divElem.querySelectorAll("ul > li");
       console.log(items);
+
+      const ul = document.querySelectorAll("ul");
+      console.log(ul);
+      const li = document.querySelectorAll("ul li");
+      console.log(li);
+      console.log(li.length);
       
