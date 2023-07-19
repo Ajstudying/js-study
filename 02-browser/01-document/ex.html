@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let sumTo = (n) => {
+        if (n > 1) {
+          return n + sumTo(n - 1);
+        } else if (n == 1) {
+          return 1;
+        }
+      };
+
+      // function sumTo(n) {
+      //   let sum = 0;
+      //   for (let i = 0; i < n; i++) {
+      //     sum += i;
+      //   }
+      //   return sum;
+      // }
+      console.log(sumTo(100));
+      console.log(sumTo(2));
+      console.log(sumTo(3));
+
+      let factorial = (n) => {
+        if (n > 1) {
+          return n * factorial(n - 1);
+        } else if (n == 1) {
+          return 1;
+        }
+      };
+
+      console.log(factorial(5));
+    </script>
+  </body>
+</html>
