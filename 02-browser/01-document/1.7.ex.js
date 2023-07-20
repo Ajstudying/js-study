@@ -90,3 +90,38 @@ function createTree(container, data){
     container.append(ul);
   }
 }
+
+
+//연습 어게인
+// const container = document.createElement("div");
+// container.classList.add("container");
+// console.log(Object.keys(data).length);
+
+// // for(let prop in data){
+// //   const li = document.createElement("li");
+// //   li.textContent = data[prop];
+// //   // ul.append(li);
+// //   console.log(prop);
+// // }
+
+// //객체로부터 트리 생성하기
+// function createTree(container, data) {
+//   if(Object.keys(data).length > 0){
+//     //ul만들기
+//     const ul = document.createElement("ul");
+    
+//     //ul에 하나씩 넣을 li
+//     for(let prop in data){
+//       const li = document.createElement("li");
+//       li.textContent = prop;
+//       ul.append(li);
+//       createTree(ul, data[prop]);
+//     }
+
+//     //div에 ul 추가
+//     container.append(ul);
+//   }
+//   document.body.prepend(container)
+// }
+
+// createTree(container, data);

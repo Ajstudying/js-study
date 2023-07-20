@@ -5,24 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      /* 손가락 모양으로 바꾸는 것 */
+      h2 {
+        cursor: pointer;
+        /* 택스트 선택 (색칠)이 안됨 */
+        -webkit-user-select: none; /* Safari */
+        user-select: none; /*Standard syntax*/
+      }
+      i {
+        color: green;
+        font-style: normal;
+        margin-right: 0.5rem;
+        display: inline-block; /* 이걸 넣어줘야 transform이 됨.*/
+        transition: transform 0.3s;
+      }
       .pane {
         position: relative;
       }
       .remove-button {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        right: 15px;
       }
     </style>
   </head>
   <body>
-    <!-- The button code (may need to adjust CSS):
-    <button class="remove-button">[x]</button> -->
+    <!-- <div> 이렇게 감싸져 있을 때 div에 id 컨테이너를 줘서 -->
+    <!-- 선택자로 할 수 있음 -->
+    <h2><i>▶</i>Sweeties</h2>
+    <ul hidden>
+      <li>Cake</li>
+      <li>Donut</li>
+      <li>Hoeney</li>
+    </ul>
 
-    <div>
+    <div id="container">
       <div class="pane">
-        <h3>Horse</h3>
         <button class="remove-button">[x]</button>
+        <h3>Horse</h3>
         <p>
           The horse is one of two extant subspecies of Equus ferus. It is an
           odd-toed ungulate mammal belonging to the taxonomic family Equidae.
@@ -32,8 +51,8 @@
         </p>
       </div>
       <div class="pane">
-        <h3>Donkey</h3>
         <button class="remove-button">[x]</button>
+        <h3>Donkey</h3>
         <p>
           The donkey or ass (Equus africanus asinus) is a domesticated member of
           the horse family, Equidae. The wild ancestor of the donkey is the
@@ -42,8 +61,8 @@
         </p>
       </div>
       <div class="pane">
-        <h3>Cat</h3>
         <button class="remove-button">[x]</button>
+        <h3>Cat</h3>
         <p>
           The domestic cat (Latin: Felis catus) is a small, typically furry,
           carnivorous mammal. They are often called house cats when kept as
