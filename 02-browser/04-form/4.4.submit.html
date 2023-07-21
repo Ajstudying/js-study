@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      select option:checked {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- form action="URL(Unified Resouce Locator)" -->
+    <!-- action url에 form 값을 전달 -->
+    <!-- form의 값은 name 속성으로 구분하여 전달 됨. -->
+    <!-- ?name=value&name=valu...... -->
+    <!-- x-www-form-urlencoded 방식의 데이터 전달법 -->
+    <!-- query string, query parameter -->
+    <form id="naver-search" action="https://search.naver.com/search.naver">
+      <input type="text" name="query" />
+      <button>네이버 검색 결과 보기</button>
+    </form>
+    <hr />
+    <form id="meta-search" target="_blank">
+      <select>
+        <option value="google" selected>Google</option>
+        <option value="daum">Daum</option>
+        <option value="bing">Bing</option>
+      </select>
+      <input type="text" name="q" />
+      <button>검색 결과 보기</button>
+    </form>
+    <script src="4.4.submit.js"></script>
+  </body>
+</html>

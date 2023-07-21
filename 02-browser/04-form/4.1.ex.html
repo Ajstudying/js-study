@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 10px;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+      box-sizing: border-box;
+      position: relative;
+    }
+    * {
+    }
+    label {
+      margin: 15px;
+      padding: 10px;
+    }
+    label:hover {
+      font-weight: bold;
+    }
+    .productName {
+      padding: 10px;
+    }
+    button:nth-of-type(1) {
+      position: absolute;
+      top: 5rem;
+      right: 15px;
+      text-align: right;
+    }
+    form:nth-of-type(2) {
+      position: absolute;
+      top: 10rem;
+    }
+    form:nth-of-type(2) > button {
+      position: absolute;
+      top: 8rem;
+      right: 15px;
+    }
+  </style>
+  <body>
+    <form>
+      <h3>원하는 과일을 선택하세요.</h3>
+      <label>
+        <input type="checkbox" name="fruit" value="apple" />
+        apple</label
+      >
+      <label>
+        <input type="checkbox" name="fruit" value="banana" />
+        banana</label
+      >
+      <label>
+        <input type="checkbox" name="fruit" value="kiwi" />
+        kiwi</label
+      >
+      <ul hidden>
+        <h4>선택한 상품 리스트</h4>
+      </ul>
+      <button>선택한 상품 보기</button>
+    </form>
+
+    <hr />
+    <form id="radioForm">
+      <h3>당신이 좋아하는 프로그래밍언어를 선택하세요!</h3>
+      <label for="Python">
+        <input type="radio" name="language" id="Python" />
+        Python</label
+      >
+      <label for="JavaScript">
+        <input type="radio" name="language" id="JavaScript" />
+        JavaScript</label
+      >
+      <label for="Java">
+        <input type="radio" name="language" id="Java" />
+        Java</label
+      >
+      <label for="C++">
+        <input type="radio" name="language" id="C++" />
+        C++</label
+      >
+      <ul hidden>
+        <p>프로그래밍 언어 리스트</p>
+      </ul>
+      <button>제출</button>
+    </form>
+
+    <script src="4.1.ex.js"></script>
+  </body>
+</html>

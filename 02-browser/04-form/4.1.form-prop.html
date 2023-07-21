@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input[name="age"] {
+        width: 30px;
+        height: 30px;
+      }
+      input[name="age"]:checked {
+        width: 20px;
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- radio는 name을 똑같이 맞추면 그룹이 됨. -->
+
+    <form>
+      <input type="radio" name="age" value="10" checked />
+      <input type="radio" name="age" value="20" />
+      <input type="radio" name="age" value="30" />
+      <textarea
+        placeholder="메모를 입력하세요.."
+        cols="30"
+        rows="10"
+      ></textarea>
+      <!-- rows 행수, cols 가로? 크기 -->
+      <hr />
+      <label>
+        <input type="checkbox" name="fruit" value="apple" />
+        apple</label
+      >
+      <label>
+        <input type="checkbox" name="fruit" value="banana" checked />
+        banana</label
+      >
+      <label>
+        <input type="checkbox" name="fruit" value="kiwi" checked />
+        kiwi</label
+      >
+    </form>
+    <script src="4.1.form-prop.js"></script>
+  </body>
+</html>
