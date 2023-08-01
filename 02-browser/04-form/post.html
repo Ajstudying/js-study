@@ -78,12 +78,13 @@
       form > label:nth-of-type(2) {
         display: flex;
         border-radius: 10px;
+        align-items: center;
         justify-content: space-between;
         /* height: 2rem; */
       }
       form > label:nth-of-type(2) > input {
         visibility: hidden;
-        width: 10px;
+        width: 20px;
       }
       form > label:nth-of-type(2) > div {
         background-color: #f8f9fa;
@@ -95,7 +96,8 @@
         font-size: 14px;
         /* height: 36px; */
         line-height: 27px;
-        min-width: 54px;
+        width: 15rem;
+        /* min-width: 54px; */
         padding: 0 16px;
         text-align: center;
         user-select: none;
@@ -130,9 +132,10 @@
         rows="20"
       ></textarea>
       <label
-        >프로필: <input type="file" accept="image/*" />
-        <div>파일선택</div></label
-      >
+        >프로필:
+        <div>파일선택</div>
+        <input type="file" accept="image/*" />
+      </label>
       <button>저장</button>
     </form>
     <section></section>

@@ -11,7 +11,8 @@ function createRow(name, phone, email, image) {
   <td>${name}</td>
   <td>${phone}</td>
   <td>${email}</td>  
-  <td><img width="auto" height="30" src="${image}" alt="${name}"></td>
+  <td>${image ?
+    `<img width="auto" height="30" src="${image}" alt="${name}">` : ""} </td>
   `;
   return tr;
 }
@@ -138,7 +139,6 @@ function createRow(name, phone, email, image) {
      // 데이터를 서버에 전송하고, UI요소 생성
     async function createContact(image) {
       /// --- 서버전송하면 UI 생성
-
       // 서버에 데이터를 전송
       // fetch(url, options)
       const response = await fetch(
@@ -159,14 +159,11 @@ function createRow(name, phone, email, image) {
         }
       );
       console.log(response);
-
       const result = await response.json();
       console.log(result);
-
       // 화면에 요소를 추가하는 것은 데이처리가 정상적으로 된 다음에
       // 서버에서 응답받은 데이터
       const { data } = result;
-
       // --- 3. 어딘가(부모, 다른요소)에 추가한다(append, prepend);
       document
         .querySelector("tbody")

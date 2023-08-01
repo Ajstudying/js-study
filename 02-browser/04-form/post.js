@@ -1,18 +1,7 @@
-// function createDiv(no, title, content, createdTime, creatorName) {
-//   const template =  /*html*/
-//     `<div data-no="${no}">
-//     <h4>작성자: ${creatorName}</h4>
-//     <hr>
-//     <h3>${no}. ${title}</h3>
-//     <p>${content}</p>
-//     <hr>
-//     <h5><sub>생성시간: ${new Date(createdTime).toLocaleString()}</sub></h5>
-//     <hr>
-//     </div>`;
-//     return template;
-// }
+
 function cardTemplate(item) {
-  if(item.image == null){
+  const imageElement = item.image ? `<img src="${item.image}" alt="${item.no}">` : "";
+  // if(item.image == null || item.image == ""){
     const template =  /*html*/
     `<article data-no="${item.no}">
     <div>
@@ -22,28 +11,29 @@ function cardTemplate(item) {
     <hr>
     <h3>${item.title}</h3>
     <p>${item.content}</p>
+    ${imageElement}
     <hr>
     <h5><sub>생성시간: ${new Date(item.createdTime).toLocaleString()}</sub></h5>
     <hr>
     </article>`;
     return template;
-  } else {
-    const template =  /*html*/
-    `<article data-no="${item.no}">
-    <div>
-    <h4>작성자: ${item.creatorName}</h4>
-    <button class="remove">X</button>
-    </div>
-    <hr>
-    <h3>${item.title}</h3>
-    <p>${item.content}</p>
-    <img src="${item.image}" alt="${item.no}">
-    <hr>
-    <h5><sub>생성시간: ${new Date(item.createdTime).toLocaleString()}</sub></h5>
-    <hr>
-    </article>`;
-    return template;
-  }
+  // } else {
+  //   const template =  /*html*/
+  //   `<article data-no="${item.no}">
+  //   <div>
+  //   <h4>작성자: ${item.creatorName}</h4>
+  //   <button class="remove">X</button>
+  //   </div>
+  //   <hr>
+  //   <h3>${item.title}</h3>
+  //   <p>${item.content}</p>
+  //   <img src="${item.image}" alt="${item.no}">
+  //   <hr>
+  //   <h5><sub>생성시간: ${new Date(item.createdTime).toLocaleString()}</sub></h5>
+  //   <hr>
+  //   </article>`;
+  //   return template;
+  // }
 }
 
 
@@ -173,15 +163,15 @@ function cardTemplate(item) {
 (() => {
   
   const section = document.querySelector("section");
-  const buttons = document.querySelectorAll("button");
+  // const buttons = document.querySelectorAll("button");
 
   
   section.addEventListener("click", async(e) => {
     e.preventDefault();
     console.log(e.target);
-    console.log(typeof(e.target));
 
-    if(e.target !== buttons[0] && e.target.classList.contains("remove")){
+    //e.target !== buttons[0] &&
+    if(e.target.classList.contains("remove")){
 
       const removeArticle = e.target.closest("article");
       const removeNumber = removeArticle.dataset.no;
