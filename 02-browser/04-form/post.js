@@ -11,6 +11,7 @@ function cardTemplate(item) {
     <hr>
     <h3>${item.title}</h3>
     <p>${item.content}</p>
+    <div><button class="btn-modify">:</button></div>
     ${imageElement}
     <hr>
     <h5><sub>생성시간: ${new Date(item.createdTime).toLocaleString()}</sub></h5>
@@ -53,7 +54,7 @@ function cardTemplate(item) {
 
   //data-no="${item.no}" 이걸로 삭제 관리.
   result.forEach(item => {
-    section.insertAdjacentHTML("beforeend", cardTemplate(item));
+    section.insertAdjacentHTML("afterbegin", cardTemplate(item));
   });
 
     //시간을 원하는 형태로 바꾸는 방법 ↓
@@ -163,9 +164,7 @@ function cardTemplate(item) {
 (() => {
   
   const section = document.querySelector("section");
-  // const buttons = document.querySelectorAll("button");
 
-  
   section.addEventListener("click", async(e) => {
     e.preventDefault();
     console.log(e.target);
@@ -184,19 +183,73 @@ function cardTemplate(item) {
       removeArticle.remove();
     }
     
-
-    // console.log(`article[data-no="${removeNumber.value}"]`);
-    // const removeDiv = document.querySelector(
-    //   `article[data-no="${removeNumber.value}"]`
-    // );
-
-    // if(!removeDiv) {
-    //   alert("해당 포스트가 없습니다.");
-    //   return;
-    // }
-
-    // removeDiv.remove();
-    // deleteForm.reset();
   })
 
+})();
+
+//수정
+(() => {
+  document.querySelector("section").addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    if(e.target.classList.contains("btn-modify")){
+      const modifyArticle = e.target.closest("article");
+      console.log(modifyArticle);
+      console.log(modifyArticle.querySelector("h3").innerHTML);
+     
+      //레이어 띄우기
+      /** @type {HTMLDivElement} */
+      const layer = document.querySelector("#modify-layer");
+      layer.hidden = false;
+
+      //레이어 내부에 선택값을 채워넣음
+      const title = modifyArticle.querySelector("h3");
+      layer.querySelector("input").value = title.innerHTML;
+
+      const textbox = modifyArticle.querySelector("p");
+      layer.querySelector("textarea").value = textbox.innerHTML;
+
+      // 확인 / 취소 버튼에 이벤트 핸들러 추가
+
+      const buttons = layer.querySelectorAll("button");
+      //취소 버튼
+      buttons[1].addEventListener("click", (e) => {
+        e.preventDefault();
+        layer.hidden = true;
+      });
+
+      //수정
+      buttons[0].addEventListener("click", async(e) => {
+        e.preventDefault();
+
+        const modifyNum = modifyArticle.dataset.no;
+        
+        const modifyTitle = layer.querySelector("input").value;
+        const modifyTextbox = layer.querySelector("textarea").value;
+
+        //서버연동
+        const response = await fetch(
+          `http://localhost:8080/posts/${modifyNum}` , {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify ({
+            title: modifyTitle,
+            content: modifyTextbox,
+          }),
+        });
+        console.log(response.status);
+
+        //데이터 셀의 값을 수정입력으로 바꿈.
+        title.innerHTML = layer.querySelector("input").value;
+        textbox.innerHTML = layer.querySelector("textarea").value;
+        layer.hidden = true;
+      })
+
+
+
+    }
+
+  });
 })();

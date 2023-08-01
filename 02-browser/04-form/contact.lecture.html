@@ -8,34 +8,97 @@
       tr:hover {
         cursor: pointer;
       }
+      #modify-layer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      #modify-layer > div {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+
+      #modify-box {
+        position: absolute;
+        /* 부모요소의 크기의 절반만큼을 오른쪽/아래쪽으로 이동시킴 */
+        left: 50%;
+        top: 50%;
+        /* 자기 자신 크기의 절반만큼을 왼쪽/위쪽으로 이동시킴 */
+        transform: translateX(-50%) translateY(-50%);
+        background-color: white;
+        width: 500px;
+        padding: 2rem;
+      }
+
+      #modify-box form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #modify-box form > div {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+      #modify-box form > div button {
+        flex: 1;
+      }
+
+      main {
+        margin-left: 240px;
+      }
     </style>
   </head>
   <body>
-    <h2>연락처 관리 프로그램</h2>
-    <hr />
-    <form action="">
-      <label>*이름: <input type="text" /></label>
-      <label>*휴대폰: <input type="tel" /></label>
-      <label>이메일: <input type="email" /></label>
-      <br />
-      <!-- <input type="file" multiple />  여러개 선택 가능. -->
-
-      <!-- MIME type -->
-      <!-- application/json, image/jpeg, image/png, text/html... -->
-      <label for="">프로필: <input type="file" accept="image/*" /></label>
-
-      <button>추가</button>
-    </form>
-    <h3>저장된 연락처 리스트:</h3>
-    <table>
-      <tbody></tbody>
-    </table>
-    <hr />
-    연락처삭제: <br />
-    <form action="">
-      <label>이메일: <input type="text" /></label>
-      <button>삭제</button>
-    </form>
+    <script src="../sidebar.js"></script>
+    <main>
+      <h2>연락처 관리 프로그램</h2>
+      <hr />
+      <form action="">
+        <!-- MIME type -->
+        <!-- application/json, image/jpeg, image/png, text/html -->
+        <label>*이름: <input type="text" /></label>
+        <label>*휴대폰: <input type="tel" /></label>
+        <label>이메일: <input type="email" /></label>
+        <br />
+        <label>이미지: <input type="file" accept="image/*" /></label>
+        <button>추가</button>
+      </form>
+      <h3>저장된 연락처 리스트:</h3>
+      <table>
+        <tbody></tbody>
+      </table>
+      <hr />
+      연락처삭제: <br />
+      <form action="">
+        <label>이메일: <input type="text" /></label>
+        <button>삭제</button>
+      </form>
+      <!-- 모달 백그라운드 레이어 -->
+      <div id="modify-layer" hidden>
+        <!-- 컨텐츠 감싸는 영역 -->
+        <div>
+          <!-- 컨텐츠 컨테이너 영역 -->
+          <div id="modify-box">
+            <h3>hong@gmail.com</h3>
+            <form>
+              <label>*이름: <input type="text" /></label>
+              <label>*휴대폰: <input type="tel" /></label>
+              <div>
+                <button>확인</button>
+                <button>취소</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
     <script src="contact.lecture.js"></script>
   </body>
 </html>

@@ -7,12 +7,16 @@ function createRow(name, phone, email, image) {
   //** 서버에서 받은 데이터의 유일한 속성(key) */
   // 2. 요소의 속성 설정
   tr.dataset.email = email;
-  tr.innerHTML = `
+  tr.innerHTML = /*html*/ `
   <td>${name}</td>
   <td>${phone}</td>
   <td>${email}</td>  
-  <td>${image ?
-    `<img width="auto" height="30" src="${image}" alt="${name}">` : ""} </td>
+  <td>${
+    image
+      ? `<img width="auto" height="30" src="${image}" alt="${name}">`
+      : ""
+  }</td>
+  <td><button class="btn-modify">수정</button></td>
   `;
   return tr;
 }
@@ -236,4 +240,94 @@ function createRow(name, phone, email, image) {
 
     form.reset();
   });
+})();
+
+// 수정처리(이벤트 위임)
+(() => {
+  document
+    .querySelector("tbody")
+    .addEventListener("click", (e) => {
+      // 수정버튼을 클릭한 이벤트에 작동
+      if (
+        e.target.classList.contains("btn-modify")
+      ) {
+        // jsdoc type 힌트를 넣어줌
+        /** @type {HTMLButtonElement} */
+        const modifyBtn = e.target;
+        // button -> td -> tr
+        const row =
+          modifyBtn.parentElement.parentElement; // tr
+        // tr의 모든 데이터셀의 내부값 가져오기
+        const cells = row.querySelectorAll("td");
+        console.log(
+          cells[0].innerHTML,
+          cells[1].innerHTML,
+          cells[2].innerHTML
+        );
+
+        // 모달 레이어 띄우기
+        /** @type {HTMLDivElement} */
+        const layer = document.querySelector(
+          "#modify-layer"
+        );
+        layer.hidden = false;
+
+        // 모달 내부의 폼에 선택값을 채워 넣음
+        layer.querySelector("h3").innerHTML =
+          cells[2].innerHTML;
+        const inputs =
+          layer.querySelectorAll("input");
+        inputs[0].value = cells[0].innerHTML;
+        inputs[1].value = cells[1].innerHTML;
+
+        // 확인/취소 버튼이 이벤트 핸들러 추가
+        const buttons =
+          layer.querySelectorAll("button");
+        // 취소 버튼
+        buttons[1].addEventListener(
+          "click",
+          (e) => {
+            e.preventDefault();
+            layer.hidden = true;
+          }
+        );
+
+        // 수정 버튼
+        buttons[0].addEventListener(
+          "click",
+          async (e) => {
+            e.preventDefault();
+            // 셀이 있는 고정값
+            const email = cells[2].innerHTML;
+            // 입력값으로
+            const name = inputs[0].value;
+            const phone = inputs[1].value;
+
+            const options = {
+              method: "PUT",
+              headers: {
+                "content-type":
+                  "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                phone,
+              }),
+            };
+            // 서버 연동
+            const response = await fetch(
+              `http://localhost:8080/contacts/${email}`,
+              options
+            );
+
+            console.log(response.status);
+
+            // 데이터셀의 값을 수정입력 폼의 값으로 바꿨음.
+            cells[0].innerHTML = inputs[0].value;
+            cells[1].innerHTML = inputs[1].value;
+            layer.hidden = true;
+          }
+        );
+      }
+    });
 })();

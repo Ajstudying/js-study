@@ -1,0 +1,159 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  /* width: 31.2rem; */
+  /* margin: 1rem; */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  position: relative;
+}
+h1 {
+  margin: 0;
+  text-align: center;
+  border-radius: 10px;
+}
+article {
+  width: 22rem;
+  /* height: 30rem; */
+  padding: 1.5rem;
+  margin: 1.5rem 0.8rem;
+  background-color: rgb(255, 250, 240, 0.5);
+  box-shadow: 5px 5px 10px hsl(19, 28%, 33%);
+  border-radius: 10px;
+}
+article > div:nth-of-type(1) {
+  display: flex;
+  justify-content: space-between;
+}
+article > div:nth-of-type(2) {
+  text-align: right;
+}
+h4 {
+  font-weight: 500;
+  margin: 0;
+  /* margin-top: 0.5rem;
+  margin-bottom: 0.5rem; */
+}
+h5 {
+  font-size: 15px;
+  font-weight: 400;
+  text-align: right;
+  margin: 0.5rem;
+}
+p {
+  margin-bottom: 0;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  /* align-items: center; */
+  margin: 1rem 0.8rem;
+  max-width: 22rem;
+  width: 100%;
+  gap: 10px;
+}
+form > label:nth-of-type(1) > input {
+  width: 80%;
+  text-align: center;
+  border-radius: 10px;
+}
+form > textarea {
+  width: 100%;
+  height: 18rem;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid #000;
+}
+form > label:nth-of-type(2) {
+  display: flex;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-between;
+  /* height: 2rem; */
+}
+form > label:nth-of-type(2) > input {
+  visibility: hidden;
+  width: 20px;
+}
+form > label:nth-of-type(2) > div {
+  background-color: #f8f9fa;
+  border: 1px solid black;
+  border-radius: 4px;
+  color: #3c4043;
+  cursor: pointer;
+  font-family: arial, sans-serif;
+  font-size: 14px;
+  /* height: 36px; */
+  line-height: 27px;
+  width: 15rem;
+  /* min-width: 54px; */
+  padding: 0 16px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: pre;
+}
+form > button {
+  width: 20%;
+  align-self: flex-end;
+}
+img {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+section:nth-of-type(1) {
+  display: flex;
+}
+.remove {
+  height: 1.5rem;
+}
+#modify-layer {
+  position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.7);
+}
+#modify-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  justify-content: center;
+  /* 부모요소의 크기의 절반만큼을 오른쪽/아래쪽으로 이동시킴 */
+  left: 50%;
+  top: 50%;
+  /* 자기 자신 크기의 절반만큼을 왼쪽/위쪽으로 이동시킴 */
+  transform: translateX(-50%) translateY(-50%);
+  background-color: white;
+  width: 500px;
+  padding: 2rem;
+  align-items: center;
+}
+#modify-box > div > input{
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+}
+#modify-box > div > textarea{
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+}
+#modify-box > div:last-child {
+  /* border: 1px #000 solid; */
+  display: flex;
+  width: 22rem;
+  gap: 10px;
+  justify-content: flex-end;
+}
