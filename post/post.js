@@ -1,7 +1,11 @@
+let currentPage = 0; //현재 페이지 번호
+let isLastPage = false; //마지막 페이지 인지 여부 
+const MAX_MEMO = 5;// 고정된 메모 갯수
+let currentQuery = ""; // 현재 검색 키워드
 
+//메모 형태
 function cardTemplate(item) {
   const imageElement = item.image ? `<img src="${item.image}" alt="${item.no}">` : "";
-  // if(item.image == null || item.image == ""){
     const template =  /*html*/
     `<article data-no="${item.no}">
     <div>
@@ -18,62 +22,114 @@ function cardTemplate(item) {
     <hr>
     </article>`;
     return template;
-  // } else {
-  //   const template =  /*html*/
-  //   `<article data-no="${item.no}">
-  //   <div>
-  //   <h4>작성자: ${item.creatorName}</h4>
-  //   <button class="remove">X</button>
-  //   </div>
-  //   <hr>
-  //   <h3>${item.title}</h3>
-  //   <p>${item.content}</p>
-  //   <img src="${item.image}" alt="${item.no}">
-  //   <hr>
-  //   <h5><sub>생성시간: ${new Date(item.createdTime).toLocaleString()}</sub></h5>
-  //   <hr>
-  //   </article>`;
-  //   return template;
-  // }
 }
 
-
-(async() => {
+// 메모를 찾아서 조회 후 화면에 보이는 메서드
+async function getPagedMemo(page, query){
   const section = document.querySelector("section");
-  const response = await fetch("http://localhost:8080/posts");
-  const result = await response.json();
-  // console.log(result);
-
-  //form 뒤에 추가했을 때는 다시 재정렬해서 넣어야 역순 정렬이됨.
-  //result.sort. 
-  //배열 메서드를 사용해도 배열로 바뀜
-  // const data = Array.from(result);
-  // 마지막에 afterbegin을 할거면
-  // data.sort((a, b) => a.no - b.no); 이렇게 정렬해야
-  // 마지막이 위로 오게 됨.
-
-  //data-no="${item.no}" 이걸로 삭제 관리.
+  let url = "";
+  if(query){
+    url = `http://localhost:8080/posts/paging/search?page=${page}&size=${MAX_MEMO}&query=${query}`
+  }else{
+    url = `http://localhost:8080/posts/paging?page=${page}&size=${MAX_MEMO}`;
+  }
+  const response = await fetch(url);
+  const results = await response.json();
+  
+  //목록 초기화
+  section.innerHTML = "";
+  const result = results.content;
   result.forEach(item => {
-    section.insertAdjacentHTML("afterbegin", cardTemplate(item));
+    section.insertAdjacentHTML("beforeend", cardTemplate(item));
   });
 
-    //시간을 원하는 형태로 바꾸는 방법 ↓
-    // const time = new Date(item.createdTime);
-    // const formattedTime = `
-    // ${time.getFullYear()}-
-    // ${(time.getMonth() + 1).toString().padStart(2, '0')}-
-    // ${time.getDate().toString().padStart(2, '0')} 
-    // ${time.getHours().toString().padStart(2, '0')}:
-    // ${time.getMinutes().toString().padStart(2, '0')}:
-    // ${time.getSeconds().toString().padStart(2, '0')}
-    // `;
+  currentPage = results.number; //현재 페이지 설정
+  isLastPage = results.last; // 마지막 페이지 여부
+      
+  //이전 /다음 버튼 활성화 처리
+  setBtnActive();
+}
 
-    //쉽게 new Date(item.createdTime).toLocaleString() 을 써도 된다!
+//이전 /다음 버튼 활성화 처리 메서드
+function setBtnActive() {
+  //버튼 선택
+  const buttons = document.forms[1].querySelectorAll("button");
 
-    // const template = /*html*/
-    //이렇게 하면 html 문서처럼 스타일 작성이 가능
-    //(es6-string-html을 다운 받아야함).
+  const btnPrev = buttons[2];
+  const btnNext = buttons[3];
 
+  //첫번째 페이지면 이전 버튼 비활성화
+  if(currentPage === 0){
+    btnPrev.disabled = true;
+  }else{
+    btnPrev.disabled = false;
+  }
+  //마지막 페이지면 다음 버튼 비활성화
+  if(isLastPage) {
+    btnNext.disabled = true;
+  }else{
+    btnNext.disabled = false;
+  }
+}
+
+//화면을 처음 켰을 때 첫번째 페이지 조회
+(async() => {
+  window.addEventListener("DOMContentLoaded", () => {
+    getPagedMemo(0);
+  });
+})();
+
+//페이징
+(() => {
+  const buttons = document.forms[1].querySelectorAll("button");
+
+  const btnPrev = buttons[2];
+  const btnNext = buttons[3];
+
+  //이전 버튼
+  btnPrev.addEventListener("click", (e) => {
+    e.preventDefault();
+    currentPage > 0 && getPagedMemo(currentPage -1, currentQuery);
+  });
+  //다음 버튼
+  btnNext.addEventListener("click", (e) => {
+    e.preventDefault();
+    !isLastPage && getPagedMemo(currentPage + 1, currentQuery);
+  });
+})();
+
+//검색 기능
+(() => {
+  const textQuery = document.forms[1].querySelector("input");
+  const btnSearch = document.forms[1].querySelector("button");
+
+  btnSearch.addEventListener("click", (e) => {
+    e.preventDefault();
+    currentQuery = textQuery.value;
+    getPagedMemo(0, currentQuery);
+  });
+
+  textQuery.addEventListener("keyup", (e) => {
+    e.preventDefault();
+    if(e.key.toLocaleLowerCase() === "enter"){
+      currentQuery = textQuery.value;
+      getPagedMemo(0, currentQuery);
+    }
+  });
+})();
+
+//검색 조건 초기화
+(() => {
+  const btnReset = document.forms[1].querySelectorAll("button")[1];
+  btnReset.addEventListener("click", (e) => {
+    e.preventDefault();
+    //검색 박스 초기화
+    document.forms[1].reset();
+    //검색 조건 값 초기화
+    currentQuery = "";
+    //검색 조건이 초기화 되면 0번 페이지에서 다시 조회
+    getPagedMemo(0, currentQuery);
+  });
 })();
 
 //추가
