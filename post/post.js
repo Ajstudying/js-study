@@ -237,7 +237,10 @@ function setBtnActive() {
         method: "DELETE",
       });
       removeArticle.remove();
+      window.location.reload();
+      
     }
+    
     
   })
 
