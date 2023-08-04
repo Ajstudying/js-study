@@ -63,9 +63,11 @@ function addItem() {
   item.addEventListener("click", () => {
     item.remove();
   })
-
+  const div = document.querySelector("main > div:last-child");
+  console.log(div);
+  
   //아이템을 목록에 추가
-  container.querySelector("ul").prepend(item);
+  div.querySelector("ul").prepend(item);
   //+입력값 초기화
   input.value = "";
 }
