@@ -2,7 +2,7 @@ tr:hover {
   cursor: pointer;
 }
 body {
-  margin: 10px;
+  margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
@@ -65,23 +65,25 @@ td:last-child{
   /* 자기 자신 크기의 절반만큼을 왼쪽/위쪽으로 이동시킴 */
   transform: translateX(-50%) translateY(-50%);
   background-color: white;
-  width: 500px;
+  width: 300px;
   padding: 2rem;
 }
-#modify-box form {
+#modify-box > form {
   display: flex;
   flex-direction: column;
 }
-#modify-box form > div {
+#modify-box > form > div:nth-of-type(1) {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
   margin-top: 0.5rem;
 }
-#modify-box form > div button {
-  flex: 1;
+#modify-box > form > div:nth-of-type(2) {
+  flex-direction: column;
+  justify-content: center;
 }
 main {
-  margin-left: 240px;
+  margin-left: 200px;
+  width: 70vw;
 }
 @media(min-width: 1000px) {
   main > form {
@@ -91,6 +93,20 @@ main {
   }
   table {
     margin: 50px 100px;
+  }
+  #modify-box{
+    width: 500px;
+  }
+  #modify-box > form > div:nth-of-type(1){
+    flex-direction: row;
+    gap: 10px;
+  }
+  #modify-box > form > div:nth-of-type(2) {
+    flex-direction: row;
+    gap: 10px;
+  }
+  #modify-box > form > div:nth-of-type(2) > button {
+    width: 10vw;
   }
  
 }

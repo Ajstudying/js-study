@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="contact.css" />
   </head>
   <body>
+    <script src="/auth.js"></script>
     <script src="../sidebar.js"></script>
     <main>
       <h2>연락처 관리 프로그램</h2>
       <hr />
       <h3>연락처 추가:</h3>
       <form>
-        <label>이름: <input type="text" /></label>
+        <label>&nbsp;&nbsp;이름: <input type="text" /></label>
         <label>휴대폰: <input type="tel" /></label>
         <label>이메일: <input type="email" /></label>
         <br />
@@ -57,8 +58,11 @@
           <div id="modify-box">
             <h3>hong@gmail.com</h3>
             <form>
-              <label>*이름: <input type="text" /></label>
-              <label>*휴대폰: <input type="tel" /></label>
+              <div>
+                <label>&nbsp;&nbsp;&nbsp;*이름: <input type="text" /></label>
+                <label>*휴대폰: <input type="tel" /></label>
+              </div>
+              <br />
               <div>
                 <button>확인</button>
                 <button>취소</button>

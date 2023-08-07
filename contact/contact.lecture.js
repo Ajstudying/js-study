@@ -37,7 +37,21 @@ async function getPagedList(page, query){
   }else{
     url = `http://localhost:8080/contacts/paging?page=${page}&size=${PAGE_SIZE}`;
   }
-  const response = await fetch(url);
+  
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${getCookie(
+        "token"
+      )}`,
+    },
+  });
+  // 401: 미인증, 403: 미인가(허가없는)
+  if ([401, 403].includes(response.status)) {
+    // 로그인 페이지로 튕김
+    alert("인증처리가 되지 않았습니다.");
+    window.location.href = "/login.html";
+  }
+
   const result = await response.json();
   const tbody = document.querySelector("tbody");
       
@@ -132,7 +146,7 @@ function setBtnActive() {
 // })();
 
 //웹페이지 로딩이 완료되면, 페이징으로 데이터 조회 및 목록 생성
-(async() => { 
+(() => { 
   window.addEventListener(
     "DOMContentLoaded",
     () => {
@@ -394,6 +408,9 @@ function setBtnActive() {
               headers: {
                 "content-type":
                   "application/json",
+                Authorization: `Bearer ${getCookie(
+                  "token"
+                )}`,
               },
               body: JSON.stringify({
                 name,

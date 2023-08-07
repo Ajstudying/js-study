@@ -33,7 +33,21 @@ async function getPagedMemo(page, query){
   }else{
     url = `http://localhost:8080/posts/paging?page=${page}&size=${MAX_MEMO}`;
   }
-  const response = await fetch(url);
+  
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${getCookie(
+        "token"
+      )}`,
+    },
+  });
+  // 401: 미인증, 403: 미인가(허가없는)
+  if ([401, 403].includes(response.status)) {
+    // 로그인 페이지로 튕김
+    alert("인증처리가 되지 않았습니다.");
+    window.location.href = "/login.html";
+  }
+  
   const results = await response.json();
   
   //목록 초기화
@@ -171,6 +185,9 @@ function setBtnActive() {
           method: "POST",
           headers: {
             "content-type": "application/json",
+            "Authorization": `Bearer ${getCookie(
+              "token"
+            )}`,
           },
           body: JSON.stringify({
             title: title.value,
@@ -235,6 +252,11 @@ function setBtnActive() {
       await fetch(`http://localhost:8080/posts/${removeNumber}`,
       {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${getCookie(
+            "token"
+          )}`,
+        },
       });
       removeArticle.remove();
       window.location.reload();
@@ -292,6 +314,9 @@ function setBtnActive() {
           method: "PUT",
           headers: {
             "content-type": "application/json",
+            "Authorization": `Bearer ${getCookie(
+              "token"
+            )}`,
           },
           body: JSON.stringify ({
             title: modifyTitle,
