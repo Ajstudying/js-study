@@ -125,7 +125,7 @@ function setBtnActive() {
 
   textQuery.addEventListener("keyup", (e) => {
     e.preventDefault();
-    if(e.key.toLocaleLowerCase() === "enter"){
+    if(e.key.toLowerCase() === "enter"){
       currentQuery = textQuery.value;
       getPagedMemo(0, currentQuery);
     }
@@ -276,7 +276,7 @@ function setBtnActive() {
     if(e.target.classList.contains("btn-modify")){
       const modifyArticle = e.target.closest("article");
       console.log(modifyArticle);
-      console.log(modifyArticle.querySelector("h3").innerHTML);
+      console.log(modifyArticle.querySelector("h4").innerHTML);
      
       //레이어 띄우기
       /** @type {HTMLDivElement} */
@@ -284,7 +284,7 @@ function setBtnActive() {
       layer.hidden = false;
 
       //레이어 내부에 선택값을 채워넣음
-      const title = modifyArticle.querySelector("h3");
+      const title = modifyArticle.querySelector("h4");
       layer.querySelector("input").value = title.innerHTML;
 
       const textbox = modifyArticle.querySelector("p");
