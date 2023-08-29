@@ -7,9 +7,46 @@
   </head>
   <body>
     <form action="http://localhost:8080/auth/signin" method="post">
-      <input type="text" name="username" value="hong" />
-      <input type="password" name="password" value="password1234" />
+      <input type="text" name="username" />
+      <input type="password" name="password" />
       <button>로그인</button>
+      <div>hong0987/password1234</div>
+      <div id="err" style="color: red"></div>
     </form>
+    <script>
+      // uri?a=b&c=d
+      // a=b&c=d : querystring을 객체화(map) js API
+
+      // http://localhost:5500/login.html?err=에러메시지
+      // err=에러메시지
+      // ("err": "에러메시지")
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("err")) {
+        document.querySelector("#err").innerHTML = params.get("err");
+        // alert(params.get("err"));
+
+        // history: 브라우저 탐색내역 객체
+        // repaceState: 현재 url의 정보를 변경
+        history.replaceState(null, null, "http://localhost:5500/login.html");
+      }
+    </script>
+    <script>
+      const btn = document.forms[0].querySelector("button");
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        if (!document.forms[0].querySelectorAll("input")[0].value) {
+          alert("사용자 이름을 입력해주세요.");
+          return;
+        }
+
+        if (!document.forms[0].querySelectorAll("input")[1].value) {
+          alert("비밀번호를 입력해주세요.");
+          return;
+        }
+
+        document.forms[0].submit();
+      });
+    </script>
   </body>
 </html>
